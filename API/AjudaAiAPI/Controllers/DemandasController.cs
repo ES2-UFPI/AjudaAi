@@ -9,28 +9,36 @@ using AjudaAiAPI.Context;
 
 namespace AjudaAiAPI.Controllers
 {
-    [Route("/Demandums")]
+    [Route("api/[controller]")]
     [ApiController]
-    public class DemandumsController : ControllerBase
+    public class DemandasController : ControllerBase
     {
         private readonly RailwayContext _context;
 
-        public DemandumsController(RailwayContext context)
+        public DemandasController(RailwayContext context)
         {
             _context = context;
         }
 
-        // GET: api/Demandums
+        // GET: api/Demandas
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Demandum>>> GetDemanda()
         {
+          if (_context.Demanda == null)
+          {
+              return NotFound();
+          }
             return await _context.Demanda.ToListAsync();
         }
 
-        // GET: api/Demandums/5
+        // GET: api/Demandas/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Demandum>> GetDemandum(int id)
         {
+          if (_context.Demanda == null)
+          {
+              return NotFound();
+          }
             var demandum = await _context.Demanda.FindAsync(id);
 
             if (demandum == null)
@@ -41,7 +49,7 @@ namespace AjudaAiAPI.Controllers
             return demandum;
         }
 
-        // PUT: api/Demandums/5
+        // PUT: api/Demandas/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
         public async Task<IActionResult> PutDemandum(int id, Demandum demandum)
@@ -72,11 +80,15 @@ namespace AjudaAiAPI.Controllers
             return NoContent();
         }
 
-        // POST: api/Demandums
+        // POST: api/Demandas
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public async Task<ActionResult<Demandum>> PostDemandum(Demandum demandum)
         {
+          if (_context.Demanda == null)
+          {
+              return Problem("Entity set 'RailwayContext.Demanda'  is null.");
+          }
             _context.Demanda.Add(demandum);
             try
             {
@@ -97,10 +109,14 @@ namespace AjudaAiAPI.Controllers
             return CreatedAtAction("GetDemandum", new { id = demandum.CodDemanda }, demandum);
         }
 
-        // DELETE: api/Demandums/5
+        // DELETE: api/Demandas/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteDemandum(int id)
         {
+            if (_context.Demanda == null)
+            {
+                return NotFound();
+            }
             var demandum = await _context.Demanda.FindAsync(id);
             if (demandum == null)
             {
@@ -115,7 +131,7 @@ namespace AjudaAiAPI.Controllers
 
         private bool DemandumExists(int id)
         {
-            return _context.Demanda.Any(e => e.CodDemanda == id);
+            return (_context.Demanda?.Any(e => e.CodDemanda == id)).GetValueOrDefault();
         }
     }
 }

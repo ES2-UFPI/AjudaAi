@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Rank dos usuários</title>
+	<link rel="stylesheet" type="text/css" href="../static/styleRanqueamento.css">
+  <link rel = "shortcut icon" href = "../static/img/favicon_transparent_32x32.ico">
+</head>
+<body>
+	<header>
+		<header>
+			<h1><img src="../static/img/remove bg logo.png" width="150" height="130"></h1>
+			<nav id="menuLateral">
+				<a href="{{ url_for('index') }}">Página Inicial</a>
+				<a href="{{ url_for('entrar') }}">Entrar</a>
+				<a href="{{ url_for('sobre') }}">Sobre</a>
+				<a href="{{ url_for('contato') }}">Fale com a gente</a>
+			</nav>
+		</header>
+	</header>
+	<main>
+    <section class="barra">
+      <div id="faixa_cabeçalho">
+        <h2>Rank</h2>
+      </div>	
+    </section>  
+        <div>
+            <table class="table">
+              <tr>
+                <th>Usuári@</th>
+                <th>Avaliação</th>
+                <th>Últimos Comentários</th>
+              </tr>
+              <tr class="user" style="order: -5;">
+
+                <td>
+                  <img src="../static/img/icon2.png" alt="Avatar de Ana">Ana
+                </td>
+                <td>
+                  <div class="rating">
+                    <img class="star" src="../static/img/estrela.png" alt="Estrela">
+                    <img class="star" src="../static/img/estrela.png" alt="Estrela">
+                    <img class="star" src="../static/img/estrela.png" alt="Estrela">
+                    <img class="star" src="../static/img/estrela.png" alt="Estrela">
+                    <img class="star" src="../static/img/estrela.png" alt="Estrela">
+                  </div>
+                </td>
+                <td>Muito atenciosa, didática e pontual.</td>
+              </tr>
+              <tr class="user" style="order: -4;">
+
+                <td>
+                  <img src="../static/img/iconboy.png" alt="Avatar de Bruno">Bruno
+                </td>
+                <td>
+                  <div class="rating">
+                    <img class="star" src="../static/img/estrela.png" alt="Estrela">
+                    <img class="star" src="../static/img/estrela.png" alt="Estrela">
+                    <img class="star" src="../static/img/estrela.png" alt="Estrela">
+                    <img class="half-star" src="../static/img/estrela.png" alt="Meia estrela">
+                  </div>
+                </td>
+                <td>Bom tutor.</td>
+              </tr>
+              
+              <tr class="user" style="order: -3;">
+
+                <td>
+                <img src="../static/img/icon.png" alt="Avatar de Carla">Carla
+                </td>
+                <td>
+                <div class="rating">
+                    <img class="star" src="../static/img/estrela.png" alt="Estrela">
+                    <img class="star" src="../static/img/estrela.png" alt="Estrela">
+                    <img class="star" src="../static/img/estrela.png" alt="Estrela">
+                </div>
+                </td>
+                <td>Ensina bem, mas poderia melhorar na questão da pontualidade.</td>
+              </tr>
+              <tr class="user" style="order: -2;">
+
+                <td>
+                <img src="../static/img/icon3.png" alt="Avatar de Daniel">Sandra
+                </td>
+                <td>
+                <div class="rating">
+                    <img class="star" src="../static/img/estrela.png" alt="Estrela">
+                    <img class="half-star" src="../static/img/estrela.png" alt="Meia estrela">
+                </div>
+                </td>
+                <td>Atrasou a entrega e não respondeu às mensagens.</td>
+              </tr>
+              <tr class="user" style="order: -1;">
+
+                <td>
+                <img src="../static/img/iconboy2.png" alt="Avatar de Eduardo">Eduardo
+                </td>
+                <td>
+                <div class="rating">
+                    <img class="star" src="../static/img/estrela.png" alt="Estrela">
+                </div>
+                </td>
+                <td>Aceitou a demanda mas simplesmente não apareceu depois.</td>
+              </tr>
+            </table>
+                
+        </div>
+        
+	</main>
+	<footer>
+        <p><div class="container-button"><button class="back-button"><a href="{{ url_for('inserirAqui') }}">Voltar</a></button></div></p>
+    </footer>
+</body>
+</html>

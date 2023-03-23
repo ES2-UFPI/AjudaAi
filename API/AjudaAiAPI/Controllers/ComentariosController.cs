@@ -24,6 +24,10 @@ namespace AjudaAiAPI.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Comentario>>> GetComentarios()
         {
+          if (_context.Comentarios == null)
+          {
+              return NotFound();
+          }
             return await _context.Comentarios.ToListAsync();
         }
 
@@ -31,6 +35,10 @@ namespace AjudaAiAPI.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Comentario>> GetComentario(int id)
         {
+          if (_context.Comentarios == null)
+          {
+              return NotFound();
+          }
             var comentario = await _context.Comentarios.FindAsync(id);
 
             if (comentario == null)
@@ -77,6 +85,10 @@ namespace AjudaAiAPI.Controllers
         [HttpPost]
         public async Task<ActionResult<Comentario>> PostComentario(Comentario comentario)
         {
+          if (_context.Comentarios == null)
+          {
+              return Problem("Entity set 'RailwayContext.Comentarios'  is null.");
+          }
             _context.Comentarios.Add(comentario);
             try
             {
@@ -101,6 +113,10 @@ namespace AjudaAiAPI.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteComentario(int id)
         {
+            if (_context.Comentarios == null)
+            {
+                return NotFound();
+            }
             var comentario = await _context.Comentarios.FindAsync(id);
             if (comentario == null)
             {
@@ -115,7 +131,7 @@ namespace AjudaAiAPI.Controllers
 
         private bool ComentarioExists(int id)
         {
-            return _context.Comentarios.Any(e => e.IdComentario == id);
+            return (_context.Comentarios?.Any(e => e.IdComentario == id)).GetValueOrDefault();
         }
     }
 }

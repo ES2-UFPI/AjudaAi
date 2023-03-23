@@ -19,7 +19,7 @@ namespace AjudaAiAPI.Controllers
             try
             {
 
-                var connectionStr = _configuration["ConnectionStrings:Railway"];
+                var connectionStr = _configuration["ConnectionStrings:railwayon"];
                 MySqlConnection connection = new MySqlConnection();
                 connection.ConnectionString = connectionStr;
                 connection.Open();

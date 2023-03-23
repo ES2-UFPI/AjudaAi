@@ -65,7 +65,8 @@ usuarios = [
             'LETRAS INGLÊS - Confecção de Abstract',
             '#programacao'
         ],
-        'avaliacao': 0
+        'avaliacao': 0,
+        'ultimo_comentario_recebido': ''
     },
     {
         'codUsuario': 2,
@@ -76,7 +77,8 @@ usuarios = [
             'LETRAS INGLÊS - Confecção de Abstract',
             '#programacao'
         ],
-        'avaliacao': 0
+        'avaliacao': 0,
+        'ultimo_comentario_recebido': ''
     },
     {
         'codUsuario': 3,
@@ -89,7 +91,8 @@ usuarios = [
             'LETRAS INGLÊS - Tempos Verbais',
             '#programacao'
         ],
-        'avaliacao': 0
+        'avaliacao': 0,
+        'ultimo_comentario_recebido': ''
     },
     {
         'codUsuario': 4,
@@ -101,7 +104,8 @@ usuarios = [
             'LETRAS INGLÊS - Tempos Verbais',
             '#programacao'
         ],
-        'avaliacao': 0
+        'avaliacao': 0,
+        'ultimo_comentario_recebido': ''
     },
     {
         'codUsuario': 5,
@@ -113,28 +117,32 @@ usuarios = [
             'LETRAS INGLÊS - Confecção de Abstract',
             '#programacao'
         ],
-        'avaliacao': 0
+        'avaliacao': 0,
+        'ultimo_comentario_recebido': ''
     },
     {
         'codUsuario': 6,
         'nome': 'Marcelo Carvalho',
         'email': 'marcelocarvalho@ufpi.edu.br',
         'tags': [],
-        'avaliacao': 0
+        'avaliacao': 0,
+        'ultimo_comentario_recebido': ''
     },
     {
         'codUsuario': 7,
         'nome': 'Sara Eduarda',
         'email': 'saraeduarda@ufpi.edu.br',
         'tags': [],
-        'avaliacao': 0
+        'avaliacao': 0,
+        'ultimo_comentario_recebido': ''
     },
     {
         'codUsuario': 8,
         'nome': 'Larissa Silva',
         'email': 'larissasilva@ufpi.edu.br',
         'tags': [],
-        'avaliacao': 0
+        'avaliacao': 0,
+        'ultimo_comentario_recebido': ''
     }
 ]
 

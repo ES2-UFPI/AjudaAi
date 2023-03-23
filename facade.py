@@ -137,7 +137,7 @@ def salvar_demanda(titulo, tipo, descricao, tags, codDemanda=0, codUsuario=0):
     return True
 
 
-def avaliacao_usuario(id_usuario, pontos):
+def avaliacao_usuario(id_usuario, pontos, comentario):
     def pos_usuario(id_usuario):
         for i, usuario in enumerate(usuarios):
             if usuario['codUsuario'] == id_usuario:
@@ -145,10 +145,11 @@ def avaliacao_usuario(id_usuario, pontos):
 
     usuario = usuarios[pos_usuario(id)]
     usuario['avaliacao'] = (usuario['avaliacao'] + pontos) / 2
+    usuario['comentario'] = comentario
 
 
 def fecha_demanda(id_demanda):
-    pos = busca_demanda_id(id)[0]
+    pos = busca_demanda_id(id_demanda)[0]
     demanda = demandas[pos]
     demanda['status'] = 'Fechada'
 
@@ -156,20 +157,14 @@ def fecha_demanda(id_demanda):
     usuarios_envio = set([usuario['email'] for usuario in usuarios])
 
     assunto_email = f"A demanda {demanda['titulo']} foi fechada!"
-    corpo_email = f"A demanda {demanda['titulo']}, que você participou, foi fechada!"
-                    + " Fique a vontade para avaliar quem se propôs a ajudar."
-                    + '<br><a href="#">Avaliar</a>'
+    corpo_email = f'A demanda "{demanda["titulo"]}", que você participou, foi fechada!'\
+                    + " Fique a vontade para avaliar quem te ajudou."\
+                    + f'<br><br><a href="http://127.0.0.1:5000/avaliar-monitor/{demanda["ajudante"]}" style="color:#213951; text-decoration:none; border:2px solid #213951; padding:5px 7px; text-align: center; border-radius:5px; width:25%; display: block; margin:auto;">Avaliar</a>'
 
     notifica.enviar_emails(assunto_email, usuarios_envio, corpo_email)
 
 
-def apaga_demanda(id):
-    global demandas
-    pos = busca_demanda_id(id)[0]
-    demandas = demandas[:pos] + demandas[pos+1:]
-
-
-
+fecha_demanda(3)
 
 # def editar_demanda(codDemanda, titulo, tipo, descricao, tags):
 #     global demandas

@@ -36,15 +36,16 @@
             <br><br>
             <label class="descricao-de-area">Descrição: </label>
             <label class="descricao-de-texto" id="descricao">{{ demanda['descricao'] }}</label>
-            <br>
-                 
-            <br>
+            <br><br>
             <p text-align:center>{{ demanda['status'] }}</p>
             <br>
-            <input type="submit" value="Entrar no chat com o monitor" class="botao-chat">
+            <a class="botao-chat" style="text-decoration: none;" href="url_for('chat', solicitante=demanda['codUsuario'], monitor=demanda['ajudante'])">Entrar no chat com o monitor</a>
             <br>
-            <input type="submit" value="Fechar demanda" class="botao-fechar-demanda">
-            <br>
+
+            {% if usuario_ativo == demanda['codUsuario'] and demanda['status'] != 'Fechada' %}
+                <a class="botao-fechar-demanda" href="{{ url_for('fechar_demanda', cod=demanda['codDemanda']) }}" style="text-decoration: none;">Fechar demanda</a>
+                <br>
+            {% endif %}
 
     </main>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/js/all.min.js"

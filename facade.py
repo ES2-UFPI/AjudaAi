@@ -29,8 +29,8 @@ def listagem_topicos_forum():
         t['usuario'] = busca_usuario_id(t['codUsuario'])
 
     return aux
-
-
+    
+    
 def listagem_demandas(id_usuario=0):
     if id_usuario:
         return [d for d in demandas if d['codUsuario'] == id_usuario]
@@ -129,43 +129,11 @@ def salvar_demanda(titulo, tipo, descricao, tags, codDemanda=0, codUsuario=0):
             'tipo': tipo,
             'descricao': descricao,
             'status': 'Em aberto',
-            'codUsuario': codUsuario,
-            'associados': [],
-            'ajudante': 0
+            'codUsuario': codUsuario
         })
 
     return True
 
-
-def avaliacao_usuario(id_usuario, pontos, comentario):
-    def pos_usuario(id):
-        for i in range(len(usuarios)):
-            if usuarios[i]['codUsuario'] == id:
-                return i
-
-    usuario = usuarios[pos_usuario(id_usuario)]
-    usuario['avaliacao'] = (usuario['avaliacao'] + pontos) / 2
-    usuario['ultimo_comentario_recebido'] = comentario
-    
-
-def fecha_demanda(id_demanda):
-    pos = busca_demanda_id(id_demanda)[0]
-    demanda = demandas[pos]
-    demanda['status'] = 'Fechada'
-
-    usuarios = [busca_usuario_id(id_usuario) for id_usuario in demanda['associados']]
-    usuarios_envio = set([usuario['email'] for usuario in usuarios])
-    usuarios_envio.add(busca_usuario_id(demanda['codUsuario'])['email'])
-
-    assunto_email = f"A demanda {demanda['titulo']} foi fechada!"
-    corpo_email = f'A demanda "{demanda["titulo"]}", que você participou, foi fechada!'\
-                    + " Fique a vontade para avaliar quem te ajudou."\
-                    + f'<br><br><a href="http://127.0.0.1:5000/avaliar-monitor/{demanda["ajudante"]}" style="color:#213951; text-decoration:none; border:2px solid #213951; padding:5px 7px; text-align: center; border-radius:5px; width:25%; display: block; margin:auto;">Avaliar</a>'
-
-    notifica.enviar_emails(assunto_email, usuarios_envio, corpo_email)
-
-
-# fecha_demanda(3)
 
 # def editar_demanda(codDemanda, titulo, tipo, descricao, tags):
 #     global demandas

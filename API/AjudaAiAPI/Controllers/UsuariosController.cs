@@ -9,7 +9,7 @@ using AjudaAiAPI.Context;
 
 namespace AjudaAiAPI.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("/Usuarios")]
     [ApiController]
     public class UsuariosController : ControllerBase
     {
@@ -24,10 +24,6 @@ namespace AjudaAiAPI.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Usuario>>> GetUsuarios()
         {
-          if (_context.Usuarios == null)
-          {
-              return NotFound();
-          }
             return await _context.Usuarios.ToListAsync();
         }
 
@@ -35,10 +31,6 @@ namespace AjudaAiAPI.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Usuario>> GetUsuario(int id)
         {
-          if (_context.Usuarios == null)
-          {
-              return NotFound();
-          }
             var usuario = await _context.Usuarios.FindAsync(id);
 
             if (usuario == null)
@@ -85,10 +77,6 @@ namespace AjudaAiAPI.Controllers
         [HttpPost]
         public async Task<ActionResult<Usuario>> PostUsuario(Usuario usuario)
         {
-          if (_context.Usuarios == null)
-          {
-              return Problem("Entity set 'RailwayContext.Usuarios'  is null.");
-          }
             _context.Usuarios.Add(usuario);
             await _context.SaveChangesAsync();
 
@@ -99,10 +87,6 @@ namespace AjudaAiAPI.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteUsuario(int id)
         {
-            if (_context.Usuarios == null)
-            {
-                return NotFound();
-            }
             var usuario = await _context.Usuarios.FindAsync(id);
             if (usuario == null)
             {
@@ -117,7 +101,7 @@ namespace AjudaAiAPI.Controllers
 
         private bool UsuarioExists(int id)
         {
-            return (_context.Usuarios?.Any(e => e.CodUsuario == id)).GetValueOrDefault();
+            return _context.Usuarios.Any(e => e.CodUsuario == id);
         }
     }
 }

@@ -36,16 +36,39 @@
             <br><br>
             <label class="descricao-de-area">Descrição: </label>
             <label class="descricao-de-texto" id="descricao">{{ demanda['descricao'] }}</label>
-            <br><br>
+            <br>
+                 
+            <br>
             <p text-align:center>{{ demanda['status'] }}</p>
             <br>
-            <a class="botao-chat" style="text-decoration: none;" href="url_for('chat', solicitante=demanda['codUsuario'], monitor=demanda['ajudante'])">Entrar no chat com o monitor</a>
-            <br>
 
-            {% if usuario_ativo == demanda['codUsuario'] and demanda['status'] != 'Fechada' %}
-                <a class="botao-fechar-demanda" href="{{ url_for('fechar_demanda', cod=demanda['codDemanda']) }}" style="text-decoration: none;">Fechar demanda</a>
-                <br>
-            {% endif %}
+            <input type="submit" value="Entrar no chat com o monitor" class="botao-chat">
+            <p>OU</p>
+            <label class="descricao-de-area info">Mais informações sobre o monitor:</label>
+            <br><br>
+
+            <label class="descricao-de-area info">Avaliar monitor:</label>
+
+            <div class="radio avaliacao">
+                <label for="avaliacao-1">1 ⭐</label>
+                <input type="radio" name="nota" id="avaliacao-1" value="avaliacao-1">
+            </div>
+            <div class="radio avaliacao">
+                <label for="avaliacao-2">2 ⭐</label>
+                <input type="radio" name="nota" id="avaliacao-2" value="avaliacao-2">
+            </div>
+            <div class="radio avaliacao">
+                <label for="avaliacao-3">3 ⭐</label>
+                <input type="radio" name="nota" id="avaliacao-3" value="avaliacao-3">
+            </div>
+            <div class="radio avaliacao">
+                <label for="avaliacao-4">4 ⭐</label>
+                <input type="radio" name="nota" id="avaliacao-4" value="avaliacao-4">
+            </div>
+            <div class="radio avaliacao">
+                <label for="avaliacao-5">5 ⭐</label>
+                <input type="radio" name="nota" id="avaliacao-5" value="avaliacao-5">
+            </div>
 
     </main>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/js/all.min.js"

@@ -30,6 +30,13 @@ header {
     margin-right: 10px;
 }
 
+main {
+	margin: 20px;
+	background-color: #fff;
+	padding: 20px;
+	border-radius: 10px;
+	box-shadow: 0 0 10px rgba(0,0,0,0.3);
+}
 
 
 .chat-container {
@@ -160,7 +167,15 @@ header {
 	border-radius: 5px; /* arredondamento das bordas do scroll */
 }
 
+.container-button{
+	padding-top: 5px;
+	padding-bottom: 5px;
+	text-align: center;
+    align-items: center;
+}
+
 .back-button{
+    align-items: center;
     border:none;
     border-radius: 3px;
     padding: 8px 16px;

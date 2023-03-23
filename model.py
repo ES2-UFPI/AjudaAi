@@ -27,7 +27,7 @@ demandas = [
         'tags': 'COMPUTAÇÃO: Algoritmo; COMPUTAÇÃO: Programação Estruturada; COMPUTAÇÃO: Linguagem C',
         'tipo': 'Aberto a membros',
         'descricao': 'Sou estudante de bioinformática e preciso aprender scripts em python, mas possuo dificuldade em lógica de programação.',
-        'status': 'Fechada',
+        'status': 'Aceita',
         'codUsuario': 1,
         'associados': [1],
         'ajudante': 7
@@ -38,10 +38,10 @@ demandas = [
         'tags': 'CÁLCULO: Derivadas; CÁLCULO: Integrais',
         'tipo': 'Individual',
         'descricao': 'Gostaria de alguém para me auxiliar na parte derivadas e integrais. Estou com muita dificuldade.',
-        'status': 'Fechada',
+        'status': 'Aceita',
         'codUsuario': 1,
         'associados': [1],
-        'ajudante': 7
+        'ajudante': 8
     },
 ]
 
@@ -65,7 +65,7 @@ usuarios = [
             'LETRAS INGLÊS - Confecção de Abstract',
             '#programacao'
         ],
-        'avaliacao': 0,
+        'avaliacao': 3,
         'ultimo_comentario_recebido': ''
     },
     {
@@ -77,7 +77,7 @@ usuarios = [
             'LETRAS INGLÊS - Confecção de Abstract',
             '#programacao'
         ],
-        'avaliacao': 0,
+        'avaliacao': 3,
         'ultimo_comentario_recebido': ''
     },
     {
@@ -91,7 +91,7 @@ usuarios = [
             'LETRAS INGLÊS - Tempos Verbais',
             '#programacao'
         ],
-        'avaliacao': 0,
+        'avaliacao': 3,
         'ultimo_comentario_recebido': ''
     },
     {
@@ -104,7 +104,7 @@ usuarios = [
             'LETRAS INGLÊS - Tempos Verbais',
             '#programacao'
         ],
-        'avaliacao': 0,
+        'avaliacao': 3,
         'ultimo_comentario_recebido': ''
     },
     {
@@ -117,7 +117,7 @@ usuarios = [
             'LETRAS INGLÊS - Confecção de Abstract',
             '#programacao'
         ],
-        'avaliacao': 0,
+        'avaliacao': 3,
         'ultimo_comentario_recebido': ''
     },
     {
@@ -125,7 +125,7 @@ usuarios = [
         'nome': 'Marcelo Carvalho',
         'email': 'marcelocarvalho@ufpi.edu.br',
         'tags': [],
-        'avaliacao': 0,
+        'avaliacao': 3,
         'ultimo_comentario_recebido': ''
     },
     {
@@ -133,7 +133,7 @@ usuarios = [
         'nome': 'Sara Eduarda',
         'email': 'saraeduarda@ufpi.edu.br',
         'tags': [],
-        'avaliacao': 0,
+        'avaliacao': 3,
         'ultimo_comentario_recebido': ''
     },
     {
@@ -141,7 +141,7 @@ usuarios = [
         'nome': 'Larissa Silva',
         'email': 'larissasilva@ufpi.edu.br',
         'tags': [],
-        'avaliacao': 0,
+        'avaliacao': 3,
         'ultimo_comentario_recebido': ''
     }
 ]

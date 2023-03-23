@@ -91,9 +91,12 @@ def avaliacao_monitor(cod):
     return render_template('avaliar-monitor.html', monitor=facade.busca_usuario_id(cod))
 
 
-@aplicacao.route('/avalia-monitor/<int:cod>', methods=['GET', 'POST'])
-def avalia_monitor(cod):
-    avaliacao_usuario(codUsuario, pontos, comentario)
+@aplicacao.route('/avalia-monitor', methods=['GET', 'POST'])
+def avalia_monitor():
+    pontos = int(request.form['nota'])
+    comentario = request.form['comentario']
+    codUsuario = int(request.form['cod-monitor'])
+    facade.avaliacao_usuario(codUsuario, pontos, comentario)
     flash(f'Avaliação cadastrada com sucesso!', category='success')
     return redirect(url_for('index'))
 
@@ -115,7 +118,7 @@ def visualizar_topico(id_topico):
 @aplicacao.route('/visualizar_demanda/<int:cod>')
 def visualizar_demanda(cod):
     demanda = facade.busca_demanda_id(cod)[1]
-    return render_template('visualizar_demanda.html', demanda=demanda)
+    return render_template('visualizar_demanda.html', demanda=demanda, usuario_ativo=usuario_padrao)
 
 
 @aplicacao.route('/apagar_demanda/<int:cod>')

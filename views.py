@@ -69,6 +69,11 @@ def forum():
     return render_template('Forum.html', topicos=facade.listagem_topicos_forum())
 
 
+@aplicacao.route('/rank')
+def rank():
+    return render_template('Ranqueamento.html', usuarios=facade.ranqueamento_usuarios())
+
+
 @aplicacao.route('/lista_demandas')
 def lista_demandas():
     global visualizar_lista

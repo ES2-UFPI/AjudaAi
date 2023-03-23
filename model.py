@@ -201,6 +201,18 @@ comentarios = [
 ]
 
 
+fotos_perfil = [
+    'iconboy2.png',
+    'iconboy.png',
+    'icon.png',
+    'icon3.png',
+    'icon2.png',
+    'iconboy2.png',
+    'icon.png',
+    'icon3.png'
+]
+
+
 def prox_id_demanda():
     return demandas[-1]['codDemanda'] + 1
 

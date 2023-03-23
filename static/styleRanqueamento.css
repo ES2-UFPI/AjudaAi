@@ -1,0 +1,156 @@
+body {
+	font-family: Arial, sans-serif;
+	margin: 0;
+	padding: 0;
+	background-color: #1a1a2e;
+	color: #000;
+}
+header, footer {
+	background-color: rgb(15, 15, 103);
+	color: #fff;
+
+}
+
+header {
+    font-family: 'Solitreo', cursive;
+    font-size: 30px; 
+    text-align: center;
+    color: rgba(10, 89, 200,255);
+}
+
+#menuLateral a {
+    display: inline;
+    text-decoration: underline;
+    color:rgb(255, 251, 251);
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 65%;
+    justify-content: space-between;
+    margin-right: 10px;
+}
+
+
+main {
+	margin: 20px;
+	background-color: #fff;
+	padding: 20px;
+	border-radius: 10px;
+	box-shadow: 0 0 10px rgba(0,0,0,0.3);
+}
+
+#faixa_cabeçalho {
+  width: 200px;
+  border-top-right-radius: 400rem;
+  border-bottom-right-radius: 400rem;
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+  align-items: center;   
+  padding-right: 2%;
+  padding-left: 5%;
+  background-color: rgba(244,186,80,255);
+}
+
+#faixa_cabeçalho h2{
+  font-size:30px;
+}
+
+.barra{
+  padding-bottom: 20px;
+}
+
+h2{
+    text-align: left;
+    font-size: 30px;
+    padding-bottom: 10px;
+}
+
+.table {
+    font-family: Arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+.table td, .table th {
+    border: 1px solid #ececec;
+    padding: 8px;
+}
+  
+.table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+  
+/*.table tr:hover {
+    background-color: #f4f3c5;
+}*/
+  
+.table th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: center;
+    background-color: #4CAF50;
+    color: white;
+    font-size: 20px;
+  }
+  
+  .user img {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    margin-right: 10px;
+  }
+  
+  .rating {
+    display: flex;
+    align-items: center;
+  }
+  
+  .rating img {
+    width: 30px;
+    height: 30px;
+    margin-right: 5px;
+  }
+  
+  .rating .star {
+    color: #FFC107;
+  }
+  
+  .rating .half-star {
+    color: #FFC107;
+    position: relative;
+  }
+  
+  .rating .half-star:before {
+    content: "\2605";
+    position: absolute;
+    left: 0;
+    overflow: hidden;
+    width: 50%;
+}
+
+.container-button{
+	padding-top: 5px;
+	padding-bottom: 5px;
+	text-align: center;
+    align-items: center;
+}
+
+.back-button{
+    align-items: center;
+    border:none;
+    border-radius: 3px;
+    padding: 8px 16px;
+    background-color:white;
+    font-weight: bold;
+    font-size: 20px;
+    font-family: "Montserrat", sans-serif;
+    cursor: pointer;
+}
+
+.back-button:hover{
+    opacity: 0.7;
+}
+
+.back-button a{
+    color: black;
+    text-decoration: none;
+}

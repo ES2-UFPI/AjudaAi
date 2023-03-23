@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Chat Privado</title>
+	<link rel="stylesheet" type="text/css" href="../static/styleChatPrivado.css">
+	<link rel = "shortcut icon" href = "../static/img/favicon_transparent_32x32.ico">
+	<link rel = "shortcut icon" href = "../static/img/remove bg logo.png">
+
+</head>
+<body>
+    <header>
+        <header>
+            <h1><img src="../static/img/remove bg logo.png" width="150" height="130"></h1>
+            <nav id="menuLateral">
+                <a href="{{ url_for('index') }}">Página Inicial</a>
+                <a href="{{ url_for('entrar') }}">Entrar</a>
+                <a href="{{ url_for('sobre') }}">Sobre</a>
+                <a href="{{ url_for('contato') }}">Fale com a gente</a>
+            </nav>
+        </header>
+    </header>
+    <main>
+        
+        <div class="chat-container">
+            <div class="chat-header">
+                <h2>Chat</h2>
+            </div>
+            <div class="chat-messages">
+                <div class="date">
+                    <p>13 de março de 2023</p>
+                </div>
+                <div class="message sent">
+                    <div class="message-content">
+                        <p class="message-sender">Você:</p>
+                        <p class="message-text">Olá! Quando podemos marcar uma reunião para a aula?</p>
+                    </div>
+                </div>
+                <div class="message received">
+                   
+                    <div class="message-content">
+                        <p class="message-sender">Tutor:</p>
+                        <p class="message-text">Tenho horários livres às terças e quintas, das 14 às 16.</p>
+                    </div>
+                </div>
+                <div class="message sent">
+               
+                    <div class="message-content">
+                        <p class="message-sender">Você:</p>
+                        <p class="message-text">Então vamos marcar para essa quinta.</p>
+                    </div>
+                </div>
+                <div class="message received">
+            
+                    <div class="message-content">
+                        <p class="message-sender">Tutor:</p>
+                        <p class="message-text">Certo!</p>
+                    </div>
+                </div>
+                <div class="date">
+                    <p>16 de março de 2023</p>
+                </div>
+                <div class="message received">
+               
+                    <div class="message-content">
+                        <p class="message-sender">Tutor:</p>
+                        <p class="message-text">Boa tarde! Segue o link da reunião pelo meet: <a href="https://meet.google.com/wxh-ngzj-ozo" id="link-message">https://meet.google.com/wxh-ngzj-ozo</a></p>
+                    </div>
+                </div>
+                <div class="message sent">
+               
+                    <div class="message-content">
+                        <p class="message-sender">Você:</p>
+                        <p class="message-text">Boa tarde. Entro já :&#41;</p>
+                    </div>
+                </div>
+            </div>
+            <div class="chat-input">
+                <input type="text" placeholder="Digite sua mensagem aqui...">
+                <button>Enviar</button>
+            </div>
+        </div>
+
+    </main>
+	<footer>
+		<p><div class="container-button"><button class="back-button"><a href="{{ url_for('inserirAqui') }}">Voltar</a></button></div></p>
+	</footer>
+</body>
+</html>

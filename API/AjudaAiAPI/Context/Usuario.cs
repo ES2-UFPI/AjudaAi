@@ -15,15 +15,13 @@ public partial class Usuario
 
     public float? Avaliacao { get; set; }
 
-    public string? Curso { get; set; }
-
     public string Nome { get; set; } = null!;
 
     public string Senha { get; set; } = null!;
 
     public string Usuario1 { get; set; } = null!;
 
-    public float? RankAvaliacao { get; set; }
+    public virtual ICollection<Comentario> Comentarios { get; } = new List<Comentario>();
 
     public virtual ICollection<Demandum> DemandumAjudanteNavigations { get; } = new List<Demandum>();
 

@@ -6,9 +6,7 @@ demandas = [
         'tipo': 'Aberto a membros',
         'descricao': 'Gostaria de alguém para me auxiliar sobre estrutura e função metabólica de componentes celulares.',
         'status': 'Em aberto',
-        'codUsuario': 3,
-        'associados': [],
-        'ajudante': 0
+        'codUsuario': 3
     },
     {
         'codDemanda': 2,
@@ -17,9 +15,7 @@ demandas = [
         'tipo': 'Individual',
         'descricao': 'Possuo conhecimento básico de inglês e procuro monitoria para revisar comigo o abstract do meu artigo.',
         'status': 'Em aberto',
-        'codUsuario': 1,
-        'associados': [],
-        'ajudante': 0
+        'codUsuario': 1
     },
     {
         'codDemanda': 3,
@@ -27,10 +23,8 @@ demandas = [
         'tags': 'COMPUTAÇÃO: Algoritmo; COMPUTAÇÃO: Programação Estruturada; COMPUTAÇÃO: Linguagem C',
         'tipo': 'Aberto a membros',
         'descricao': 'Sou estudante de bioinformática e preciso aprender scripts em python, mas possuo dificuldade em lógica de programação.',
-        'status': 'Aceita',
-        'codUsuario': 1,
-        'associados': [1],
-        'ajudante': 7
+        'status': 'Finalizado',
+        'codUsuario': 1
     },
     {
         'codDemanda': 4,
@@ -38,10 +32,8 @@ demandas = [
         'tags': 'CÁLCULO: Derivadas; CÁLCULO: Integrais',
         'tipo': 'Individual',
         'descricao': 'Gostaria de alguém para me auxiliar na parte derivadas e integrais. Estou com muita dificuldade.',
-        'status': 'Aceita',
-        'codUsuario': 1,
-        'associados': [1],
-        'ajudante': 8
+        'status': 'Em aberto',
+        'codUsuario': 5
     },
 ]
 
@@ -64,9 +56,7 @@ usuarios = [
             'COMPUTAÇÃO - Banco de Dados',
             'LETRAS INGLÊS - Confecção de Abstract',
             '#programacao'
-        ],
-        'avaliacao': 3,
-        'ultimo_comentario_recebido': ''
+        ]
     },
     {
         'codUsuario': 2,
@@ -76,9 +66,7 @@ usuarios = [
             'COMPUTAÇÃO - Banco de Dados',
             'LETRAS INGLÊS - Confecção de Abstract',
             '#programacao'
-        ],
-        'avaliacao': 3,
-        'ultimo_comentario_recebido': ''
+        ]
     },
     {
         'codUsuario': 3,
@@ -90,9 +78,7 @@ usuarios = [
             'LETRAS INGLÊS - Confecção de Abstract',
             'LETRAS INGLÊS - Tempos Verbais',
             '#programacao'
-        ],
-        'avaliacao': 3,
-        'ultimo_comentario_recebido': ''
+        ]
     },
     {
         'codUsuario': 4,
@@ -103,9 +89,7 @@ usuarios = [
             'LETRAS INGLÊS - Confecção de Abstract',
             'LETRAS INGLÊS - Tempos Verbais',
             '#programacao'
-        ],
-        'avaliacao': 3,
-        'ultimo_comentario_recebido': ''
+        ]
     },
     {
         'codUsuario': 5,
@@ -116,33 +100,25 @@ usuarios = [
             'FÍSICA - Leis de Newton',
             'LETRAS INGLÊS - Confecção de Abstract',
             '#programacao'
-        ],
-        'avaliacao': 3,
-        'ultimo_comentario_recebido': ''
+        ]
     },
     {
         'codUsuario': 6,
         'nome': 'Marcelo Carvalho',
         'email': 'marcelocarvalho@ufpi.edu.br',
-        'tags': [],
-        'avaliacao': 3,
-        'ultimo_comentario_recebido': ''
+        'tags': []
     },
     {
         'codUsuario': 7,
         'nome': 'Sara Eduarda',
         'email': 'saraeduarda@ufpi.edu.br',
-        'tags': [],
-        'avaliacao': 3,
-        'ultimo_comentario_recebido': ''
+        'tags': []
     },
     {
         'codUsuario': 8,
         'nome': 'Larissa Silva',
         'email': 'larissasilva@ufpi.edu.br',
-        'tags': [],
-        'avaliacao': 3,
-        'ultimo_comentario_recebido': ''
+        'tags': []
     }
 ]
 

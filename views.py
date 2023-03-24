@@ -71,7 +71,8 @@ def forum():
 
 @aplicacao.route('/rank')
 def rank():
-    return render_template('Ranqueamento.html', usuarios=facade.ranqueamento_usuarios())
+    usuarios, perfil = facade.ranqueamento_usuarios()
+    return render_template('Ranqueamento.html', usuarios=enumerate(usuarios), fotos_perfil=perfil)
 
 
 @aplicacao.route('/lista_demandas')

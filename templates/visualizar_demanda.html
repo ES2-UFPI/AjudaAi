@@ -39,8 +39,12 @@
             <br><br>
             <p text-align:center>{{ demanda['status'] }}</p>
             <br>
-            <a class="botao-chat" style="text-decoration: none;" href="url_for('chat', solicitante=demanda['codUsuario'], monitor=demanda['ajudante'])">Entrar no chat com o monitor</a>
-            <br>
+            {% if usuario_ativo == demanda['codUsuario'] %}
+                <a class="botao-chat" style="text-decoration: none;" href="url_for('chat', solicitante=demanda['codUsuario'], monitor=demanda['ajudante'])">Entrar no chat com o monitor</a>
+                <br>
+                <br>
+                <br>
+            {% endif %}
 
             {% if usuario_ativo == demanda['codUsuario'] and demanda['status'] != 'Fechada' %}
                 <a class="botao-fechar-demanda" href="{{ url_for('fechar_demanda', cod=demanda['codDemanda']) }}" style="text-decoration: none;">Fechar demanda</a>

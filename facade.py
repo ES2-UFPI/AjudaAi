@@ -169,8 +169,8 @@ def ranqueamento_usuarios():
     aux = usuarios.copy()
     aux = sorted(aux, key=lambda k: k['avaliacao'], reverse=True)
     
-    for i, usuario in enumerate(aux):
-        aux['avaliacao'] = math.floor(aux['avaliacao'])
+    for i in range(len(aux)):
+        aux[i]['avaliacao'] = math.floor(aux[i]['avaliacao'])
     return aux, fotos_perfil
 
 

@@ -1,5 +1,6 @@
-from model import *
+import math
 import notifica
+from model import *
 
 def listagem_tags():
     return tags
@@ -27,7 +28,6 @@ def listagem_topicos_forum():
     aux = topicos_forum.copy()
     for t in aux:
         t['usuario'] = busca_usuario_id(t['codUsuario'])
-
     return aux
 
 
@@ -146,7 +146,7 @@ def avaliacao_usuario(id_usuario, pontos, comentario):
     usuario = usuarios[pos_usuario(id_usuario)]
     usuario['avaliacao'] = (usuario['avaliacao'] + pontos) / 2
     usuario['ultimo_comentario_recebido'] = comentario
-    
+
 
 def fecha_demanda(id_demanda):
     pos = busca_demanda_id(id_demanda)[0]
@@ -165,7 +165,14 @@ def fecha_demanda(id_demanda):
     notifica.enviar_emails(assunto_email, usuarios_envio, corpo_email)
 
 
-# fecha_demanda(3)
+def ranqueamento_usuarios():
+    aux = usuarios.copy()
+    aux = sorted(aux, key=lambda k: k['avaliacao'], reverse=True)
+    
+    for i in range(len(aux)):
+        aux[i]['avaliacao'] = math.floor(aux[i]['avaliacao'])
+    return aux, fotos_perfil
+
 
 # def editar_demanda(codDemanda, titulo, tipo, descricao, tags):
 #     global demandas

@@ -17,7 +17,7 @@ demandas = [
         'tipo': 'Individual',
         'descricao': 'Possuo conhecimento básico de inglês e procuro monitoria para revisar comigo o abstract do meu artigo.',
         'status': 'Em aberto',
-        'codUsuario': 1,
+        'codUsuario': 5,
         'associados': [],
         'ajudante': 0
     },
@@ -65,8 +65,8 @@ usuarios = [
             'LETRAS INGLÊS - Confecção de Abstract',
             '#programacao'
         ],
-        'avaliacao': 3,
-        'ultimo_comentario_recebido': ''
+        'avaliacao': 2,
+        'ultimo_comentario_recebido': 'Aceitou a demanda mas simplesmente não apareceu depois.'
     },
     {
         'codUsuario': 2,
@@ -91,8 +91,8 @@ usuarios = [
             'LETRAS INGLÊS - Tempos Verbais',
             '#programacao'
         ],
-        'avaliacao': 3,
-        'ultimo_comentario_recebido': ''
+        'avaliacao': 4,
+        'ultimo_comentario_recebido': 'Muito atenciosa, didática e pontual.'
     },
     {
         'codUsuario': 4,
@@ -105,7 +105,7 @@ usuarios = [
             '#programacao'
         ],
         'avaliacao': 3,
-        'ultimo_comentario_recebido': ''
+        'ultimo_comentario_recebido': 'Ensina bem, mas poderia melhorar na questão da pontualidade.'
     },
     {
         'codUsuario': 5,
@@ -125,7 +125,7 @@ usuarios = [
         'nome': 'Marcelo Carvalho',
         'email': 'marcelocarvalho@ufpi.edu.br',
         'tags': [],
-        'avaliacao': 3,
+        'avaliacao': 1,
         'ultimo_comentario_recebido': ''
     },
     {
@@ -134,15 +134,15 @@ usuarios = [
         'email': 'saraeduarda@ufpi.edu.br',
         'tags': [],
         'avaliacao': 3,
-        'ultimo_comentario_recebido': ''
+        'ultimo_comentario_recebido': 'Boa tutora.'
     },
     {
         'codUsuario': 8,
         'nome': 'Larissa Silva',
         'email': 'larissasilva@ufpi.edu.br',
         'tags': [],
-        'avaliacao': 3,
-        'ultimo_comentario_recebido': ''
+        'avaliacao': 5,
+        'ultimo_comentario_recebido': 'Atrasou a entrega e não respondeu às mensagens.'
     }
 ]
 
@@ -198,6 +198,18 @@ comentarios = [
         'codTopico': 1,
         'codUsuario': 2
     }
+]
+
+
+fotos_perfil = [
+    'icon.png',
+    'icon.png',
+    'iconboy.png',
+    'icon3.png',
+    'icon2.png',
+    'icon.png',
+    'iconboy2.png',
+    'icon3.png'
 ]
 
 

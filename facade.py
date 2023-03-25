@@ -1,5 +1,6 @@
 from model import *
 import notifica
+import notifica_gestao
 
 def listagem_tags():
     return tags
@@ -165,7 +166,7 @@ def fecha_demanda(id_demanda):
     notifica.enviar_emails(assunto_email, usuarios_envio, corpo_email)
 
 
-# fecha_demanda(3)
+fecha_demanda(3)
 
 # def editar_demanda(codDemanda, titulo, tipo, descricao, tags):
 #     global demandas

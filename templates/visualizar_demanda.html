@@ -40,7 +40,7 @@
             <p text-align:center>{{ demanda['status'] }}</p>
             <br>
             {% if usuario_ativo == demanda['codUsuario'] %}
-                <a class="botao-chat" style="text-decoration: none;" href="url_for('chat', solicitante=demanda['codUsuario'], monitor=demanda['ajudante'])">Entrar no chat com o monitor</a>
+                <a class="botao-chat" style="text-decoration: none;" href="{{ url_for('chat', cod_demanda=demanda['codDemanda']) }}">Entrar no chat</a>
                 <br>
                 <br>
                 <br>

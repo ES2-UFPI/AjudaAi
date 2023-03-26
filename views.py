@@ -146,6 +146,18 @@ def fechar_demanda(cod):
     return redirect(url_for('retorna_lista'))
 
 
+@aplicacao.route('/chat/<int:cod_demanda>')
+def chat(cod_demanda):
+    return render_template('ChatPrivado.html', mensagens=facade.mensagens_chat(cod_demanda), demanda=cod_demanda, usuario_ativo=usuario_padrao)
+
+
+@aplicacao.route('/chat/mensagem/<int:cod_demanda>', methods=['GET', 'POST'])
+def mensagem_chat(cod_demanda):
+    mensagem = request.form['mensagem']
+    facade.enviar_mensagem_chat(mensagem, cod_demanda, usuario_padrao)
+    return redirect(url_for('chat', cod_demanda=cod_demanda))
+
+
 @aplicacao.route('/login')
 def login():
     proxima = request.args.get('proxima_pagina')
@@ -154,8 +166,7 @@ def login():
 
 @aplicacao.route('/autenticar', methods=['POST'])
 def autenticar():
-    # busca o usuario no banco
-    
+#     busca o usuario no banco
 #     usuario = usuario_dao.buscar_por_id(request.form['usuario'])
 
     if usuario:

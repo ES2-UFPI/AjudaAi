@@ -219,6 +219,47 @@ def gera_relatorio():
     assunto_email = 'Estatísticas do AjudaAí!'
     usuarios_envio = [u['email'] for u in usuarios[:5]] #integrantes do grupo
     notifica_gestao.enviar_emails(assunto_email, usuarios_envio, dados)
+    
+
+def pos_chat(id):
+    for i in range(len(chat)):
+        if chat[i]['codDemanda'] == id:
+            return i
+
+
+def mensagens_chat(cod_demanda):
+    conversa = chat[pos_chat(cod_demanda)]
+    return conversa['mensagens']
+
+
+def enviar_mensagem_chat(mensagem, cod_demanda, cod_usuario):
+    conversa = chat[pos_chat(cod_demanda)]
+    conversa['mensagens'].append({
+        'codUsuario': cod_usuario,
+        'texto': mensagem
+    })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 # def editar_demanda(codDemanda, titulo, tipo, descricao, tags):

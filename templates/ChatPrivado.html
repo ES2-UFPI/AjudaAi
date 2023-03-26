@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Chat Privado</title>
+	<title>Chat AjudaAi</title>
 	<link rel="stylesheet" type="text/css" href="../static/styleChatPrivado.css">
 	<link rel = "shortcut icon" href = "../static/img/favicon_transparent_32x32.ico">
 	<link rel = "shortcut icon" href = "../static/img/remove bg logo.png">
@@ -19,70 +19,53 @@
             </nav>
         </header>
     </header>
-    <main>
+    <main style="scroll-behavior: ;">
         
         <div class="chat-container">
             <div class="chat-header">
                 <h2>Chat</h2>
             </div>
-            <div class="chat-messages">
+            <div id="chat-messages" class="chat-messages">
                 <div class="date">
-                    <p>13 de março de 2023</p>
+                    <p>28 de março de 2023</p>
                 </div>
-                <div class="message sent">
-                    <div class="message-content">
-                        <p class="message-sender">Você:</p>
-                        <p class="message-text">Olá! Quando podemos marcar uma reunião para a aula?</p>
-                    </div>
-                </div>
-                <div class="message received">
-                   
-                    <div class="message-content">
-                        <p class="message-sender">Tutor:</p>
-                        <p class="message-text">Tenho horários livres às terças e quintas, das 14 às 16.</p>
-                    </div>
-                </div>
-                <div class="message sent">
-               
-                    <div class="message-content">
-                        <p class="message-sender">Você:</p>
-                        <p class="message-text">Então vamos marcar para essa quinta.</p>
-                    </div>
-                </div>
-                <div class="message received">
-            
-                    <div class="message-content">
-                        <p class="message-sender">Tutor:</p>
-                        <p class="message-text">Certo!</p>
-                    </div>
-                </div>
-                <div class="date">
-                    <p>16 de março de 2023</p>
-                </div>
-                <div class="message received">
-               
-                    <div class="message-content">
-                        <p class="message-sender">Tutor:</p>
-                        <p class="message-text">Boa tarde! Segue o link da reunião pelo meet: <a href="https://meet.google.com/wxh-ngzj-ozo" id="link-message">https://meet.google.com/wxh-ngzj-ozo</a></p>
-                    </div>
-                </div>
-                <div class="message sent">
-               
-                    <div class="message-content">
-                        <p class="message-sender">Você:</p>
-                        <p class="message-text">Boa tarde. Entro já :&#41;</p>
-                    </div>
-                </div>
-            </div>
-            <div class="chat-input">
-                <input type="text" placeholder="Digite sua mensagem aqui...">
-                <button>Enviar</button>
+
+                {% for mensagem in mensagens %}
+                    {% if mensagem['codUsuario'] == usuario_ativo %}
+                        <div class="message sent">
+                            <div class="message-content">
+                                <p class="message-sender">Você:</p>
+                                <p class="message-text">{{ mensagem['texto'] }}</p>
+                            </div>
+                        </div>
+                    {% else %}
+                        <div class="message received">
+                            <div class="message-content">
+                                <p class="message-sender">Tutor:</p>
+                                <p class="message-text">{{ mensagem['texto'] }}</p>
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+
+            <div>
+                <form class="chat-input" method="POST" action="{{ url_for('mensagem_chat', cod_demanda=demanda) }}" enctype="multipart/form-data">
+                    <input name="mensagem" type="text" placeholder="Digite sua mensagem aqui...">
+                    <button>Enviar</button>
+                </form>
             </div>
         </div>
 
     </main>
 	<footer>
-		<p><div class="container-button"><button class="back-button"><a href="{{ url_for('inserirAqui') }}">Voltar</a></button></div></p>
+		<p><div class="container-button"><button class="back-button"><a href="{{ url_for('retorna_lista') }}">Voltar</a></button></div></p>
 	</footer>
+    <script>
+        window.addEventListener('load', function() {
+            var chatMessagesDiv = document.getElementById('chat-messages');
+            chatMessagesDiv.scrollTop = chatMessagesDiv.scrollHeight;
+            window.scrollTo(0, document.documentElement.scrollHeight);
+        });
+    </script>
 </body>
 </html>

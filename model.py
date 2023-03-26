@@ -29,7 +29,7 @@ demandas = [
         'descricao': 'Sou estudante de bioinformática e preciso aprender scripts em python, mas possuo dificuldade em lógica de programação.',
         'status': 'Aceita',
         'codUsuario': 1,
-        'associados': [1],
+        'associados': [2,3,4,5],
         'ajudante': 7
     },
     {
@@ -40,7 +40,7 @@ demandas = [
         'descricao': 'Gostaria de alguém para me auxiliar na parte derivadas e integrais. Estou com muita dificuldade.',
         'status': 'Aceita',
         'codUsuario': 1,
-        'associados': [1],
+        'associados': [2,3,4,5],
         'ajudante': 8
     },
 ]
@@ -200,6 +200,47 @@ comentarios = [
     }
 ]
 
+
+chat = [
+    {
+        'codDemanda': 3,
+        'mensagens': [
+            {
+                'codUsuario': 1,
+                'texto': 'Olá! Quando podemos marcar uma reunião para a aula?'
+            },
+            {
+                'codUsuario': 7,
+                'texto': 'Tenho horários livres às terças e quintas, das 14 às 16.'
+            },
+            {
+                'codUsuario': 1,
+                'texto': 'Então vamos marcar para hoje à tarde.'
+            },
+            {
+                'codUsuario': 7,
+                'texto': 'Certo!'
+            },
+            {
+                'codUsuario': 7,
+                'texto': 'Já criei a sala. Segue o link da reunião pelo meet: https://meet.google.com/wxh-ngzj-ozo. Mais tarde a gente se fala.'
+            },
+            {
+                'codUsuario': 1,
+                'texto': 'Tá bom :)'
+            }
+        ]
+    },
+    {
+        'codDemanda': 4,
+        'mensagens': [
+            {
+                'codUsuario': 1,
+                'texto': 'Olá, bom dia!'
+            },
+        ]
+    }
+]
 
 fotos_perfil = [
     'icon.png',

@@ -1,6 +1,8 @@
-from model import *
+import math
 import notifica
 import notifica_gestao
+from model import *
+
 
 def listagem_tags():
     return tags
@@ -28,7 +30,6 @@ def listagem_topicos_forum():
     aux = topicos_forum.copy()
     for t in aux:
         t['usuario'] = busca_usuario_id(t['codUsuario'])
-
     return aux
 
 
@@ -82,11 +83,7 @@ def info_topico(id_topico):
     topico = busca_topico_id(id_topico)
     topico['usuario'] = busca_usuario_id(topico['codUsuario'])
     topico['comentarios'] = [c for c in comentarios if c['codTopico'] == topico['id']]
-
-
-    # print(topico['comentarios'])
-
-
+    
     for c in topico['comentarios']:
         c['usuario'] = busca_usuario_id(c['codUsuario'])
 
@@ -147,7 +144,7 @@ def avaliacao_usuario(id_usuario, pontos, comentario):
     usuario = usuarios[pos_usuario(id_usuario)]
     usuario['avaliacao'] = (usuario['avaliacao'] + pontos) / 2
     usuario['ultimo_comentario_recebido'] = comentario
-    
+
 
 def fecha_demanda(id_demanda):
     pos = busca_demanda_id(id_demanda)[0]
@@ -166,7 +163,63 @@ def fecha_demanda(id_demanda):
     notifica.enviar_emails(assunto_email, usuarios_envio, corpo_email)
 
 
-fecha_demanda(3)
+def ranqueamento_usuarios():
+    aux = usuarios.copy()
+    aux = sorted(aux, key=lambda k: k['avaliacao'], reverse=True)
+    
+    for i in range(len(aux)):
+        aux[i]['avaliacao'] = math.floor(aux[i]['avaliacao'])
+    return aux, fotos_perfil
+
+
+def gera_relatorio():
+
+    def calcula_porcentagem(dados_gerais: list):
+        resumo = list()
+        
+        for dado in set(dados_gerais):
+            quant_total = len(dados_gerais)
+            ocorrencias = dados_gerais.count(dado)
+            resumo.append({
+                'info': dado,
+                'porcentagem': round((ocorrencias / quant_total) * 100, 2)
+            })
+        
+        return resumo
+    
+    def topicos_maior_interesse():
+        tags = list()
+        
+        for u in usuarios:
+            tags += u['tags']
+            
+        lista = calcula_porcentagem(tags)
+        return sorted(lista, key=lambda k: k['porcentagem'], reverse=True)[:3]
+    
+    def topicos_mais_procurados():
+        tags = list()
+        
+        for d in demandas:
+            tags += [tag.strip() for tag in d['tags'].split(';')]
+        for t in topicos_forum:
+            tags += t['tags']
+            
+        lista = calcula_porcentagem(tags)
+        return sorted(lista, key=lambda k: k['porcentagem'], reverse=True)[:3]
+    
+    def usuarios_destaque():
+        return [u['nome'] for u in ranqueamento_usuarios()[0][:3]]
+    
+    dados = {
+        'maior_interesse': topicos_maior_interesse(),
+        'mais_procurados': topicos_mais_procurados(),
+        'destaques': usuarios_destaque()
+    }
+    
+    assunto_email = 'Estatísticas do AjudaAí!'
+    usuarios_envio = [u['email'] for u in usuarios[:5]] #integrantes do grupo
+    notifica_gestao.enviar_emails(assunto_email, usuarios_envio, dados)
+
 
 # def editar_demanda(codDemanda, titulo, tipo, descricao, tags):
 #     global demandas

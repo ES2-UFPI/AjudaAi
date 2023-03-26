@@ -30,84 +30,28 @@
                 <th>Avaliação</th>
                 <th>Últimos Comentários</th>
               </tr>
-              <tr class="user" style="order: -5;">
-
-                <td>
-                  <img src="../static/img/icon2.png" alt="Avatar de Ana">Ana
-                </td>
-                <td>
-                  <div class="rating">
-                    <img class="star" src="../static/img/estrela.png" alt="Estrela">
-                    <img class="star" src="../static/img/estrela.png" alt="Estrela">
-                    <img class="star" src="../static/img/estrela.png" alt="Estrela">
-                    <img class="star" src="../static/img/estrela.png" alt="Estrela">
-                    <img class="star" src="../static/img/estrela.png" alt="Estrela">
-                  </div>
-                </td>
-                <td>Muito atenciosa, didática e pontual.</td>
-              </tr>
-              <tr class="user" style="order: -4;">
-
-                <td>
-                  <img src="../static/img/iconboy.png" alt="Avatar de Bruno">Bruno
-                </td>
-                <td>
-                  <div class="rating">
-                    <img class="star" src="../static/img/estrela.png" alt="Estrela">
-                    <img class="star" src="../static/img/estrela.png" alt="Estrela">
-                    <img class="star" src="../static/img/estrela.png" alt="Estrela">
-                    <img class="half-star" src="../static/img/estrela.png" alt="Meia estrela">
-                  </div>
-                </td>
-                <td>Bom tutor.</td>
-              </tr>
-              
-              <tr class="user" style="order: -3;">
-
-                <td>
-                <img src="../static/img/icon.png" alt="Avatar de Carla">Carla
-                </td>
-                <td>
-                <div class="rating">
-                    <img class="star" src="../static/img/estrela.png" alt="Estrela">
-                    <img class="star" src="../static/img/estrela.png" alt="Estrela">
-                    <img class="star" src="../static/img/estrela.png" alt="Estrela">
-                </div>
-                </td>
-                <td>Ensina bem, mas poderia melhorar na questão da pontualidade.</td>
-              </tr>
-              <tr class="user" style="order: -2;">
-
-                <td>
-                <img src="../static/img/icon3.png" alt="Avatar de Daniel">Sandra
-                </td>
-                <td>
-                <div class="rating">
-                    <img class="star" src="../static/img/estrela.png" alt="Estrela">
-                    <img class="half-star" src="../static/img/estrela.png" alt="Meia estrela">
-                </div>
-                </td>
-                <td>Atrasou a entrega e não respondeu às mensagens.</td>
-              </tr>
-              <tr class="user" style="order: -1;">
-
-                <td>
-                <img src="../static/img/iconboy2.png" alt="Avatar de Eduardo">Eduardo
-                </td>
-                <td>
-                <div class="rating">
-                    <img class="star" src="../static/img/estrela.png" alt="Estrela">
-                </div>
-                </td>
-                <td>Aceitou a demanda mas simplesmente não apareceu depois.</td>
-              </tr>
+              {% for i, usuario in usuarios %}
+                  <tr class="user">
+                    <td>
+                      <img src="../static/img/{{ fotos_perfil[i] }}" alt="Avatar de {{ usuario['nome'] }}">{{ usuario['nome'] }}
+                    </td>
+                    <td>
+                      <div class="rating">
+                        {% for i in range(usuario['avaliacao']) %}
+                          <img class="star" src="../static/img/estrela.png" alt="Estrela">
+                        {% endfor %}
+                      </div>
+                    </td>
+                    <td>{{ usuario['ultimo_comentario_recebido'] }}</td>
+                  </tr>
+              {% endfor %}
+              <!-- <tr class="user" style="order: -4;"> -->
             </table>
-                
         </div>
         
 	</main>
 	<footer>
-        <p><div class="container-button"><button class="back-button"><a href="{{ url_for('inserirAqui') }}">Voltar</a></button></div></p>
+        <p><div class="container-button"><button class="back-button"><a href="{{ url_for('index') }}">Voltar</a></button></div></p>
     </footer>
 </body>
 </html>

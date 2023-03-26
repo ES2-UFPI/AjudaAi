@@ -38,6 +38,13 @@ def criar_demanda():
     return redirect(url_for('index'))
 
 
+@aplicacao.route('/admin/enviar-relatorios')
+def relatorio_gestao():
+    facade.gera_relatorio()
+    flash('Relatórios enviados com sucesso!', category='success')
+    return redirect(url_for('index'))
+
+
 @aplicacao.route('/novo_topico')
 def novo_topico():
     #     if 'usuario_logado' not in session or session['usuario_logado'] is None:
@@ -67,6 +74,12 @@ def comentar():
 @aplicacao.route('/forum')
 def forum():
     return render_template('Forum.html', topicos=facade.listagem_topicos_forum())
+
+
+@aplicacao.route('/rank')
+def rank():
+    usuarios, perfil = facade.ranqueamento_usuarios()
+    return render_template('Ranqueamento.html', usuarios=enumerate(usuarios), fotos_perfil=perfil)
 
 
 @aplicacao.route('/lista_demandas')

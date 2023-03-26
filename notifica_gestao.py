@@ -13,7 +13,7 @@ autenticacao = {
 }
 
 
-def enviar_email_para(assunto, addr, corpo_email, server_email):
+def enviar_email_para(assunto, addr, dados, server_email):
     msg = MIMEMultipart('principal')
     image_cid = make_msgid()
 
@@ -34,25 +34,45 @@ def enviar_email_para(assunto, addr, corpo_email, server_email):
                 <header>
                     <h1 style="padding-top:30px;"><img src="cid:logo" width="100" height="100" style="margin:auto; display:block;"></h1>
                 </header>
-                <div style="color:#213951; background-color:#1a1a2e; padding:10px 10px 10px 10px;">
-                    <div style="border-top:5px solid #7fcecb; margin:0px 1.5%; display:inline-block; width:47%; height:200px">
-                    
+                <div style="background-color:#1a1a2e; padding:10px 10px 10px 10px;">
+                    <div style="border-top:5px solid #7fcecb; margin:0px 1.5%; display:inline-block; width:47%;">
+                        <span style="font-size:30px; color:#7fcecb; margin-top:10px;">Usuários em destaque</span>
                     </div>
                     <div style="background-color:#7fcecb; margin:5px 1%; display:inline-block; width:47%; height:200px">
-                        
+                        <ul style="font-size:20px; color:#1a1a2e;">
+                            <li style="list-style-type: square;">{dados['destaques'][0]}</li>
+                            <li style="list-style-type: square;">{dados['destaques'][1]}</li>
+                            <li style="list-style-type: square;">{dados['destaques'][2]}</li>
+                        </ul>
                     </div>
                 </div>
                 <div style="color:#213951; background-color:#1a1a2e; padding:10px 10px 10px 10px;">
                     <div style="background-color:#7fcecb; margin:5px 1.5%; display:inline-block; width:47%; height:200px">
-                        
+                        <ul style="font-size:20px; color:#1a1a2e;">
+                            <li style="list-style-type: square;">{dados['mais_procurados'][0]['info'].replace('#', '').capitalize()} ({dados['mais_procurados'][0]['porcentagem']}%)</li>
+                            <li style="list-style-type: square;">{dados['mais_procurados'][1]['info'].replace('#', '').capitalize()} ({dados['mais_procurados'][1]['porcentagem']}%)</li>
+                            <li style="list-style-type: square;">{dados['mais_procurados'][2]['info'].replace('#', '').capitalize()} ({dados['mais_procurados'][2]['porcentagem']}%)</li>
+                        </ul>
                     </div>
-                    <div style="border-top:5px solid #7fcecb; margin:0px 1%; display:inline-block; width:47%; height:200px">
-                    
+                    <div style="border-top:5px solid #7fcecb; margin:0px 1%; display:inline-block; width:47%;">
+                        <span style="font-size:30px; color:#7fcecb; margin-top:10px;">Tags mais utilizadas</span>
+                    </div>
+                </div>
+                <div style="color:#213951; background-color:#1a1a2e; padding:10px 10px 10px 10px;">
+                    <div style="border-top:5px solid #7fcecb; margin:0px 1.5%; display:inline-block; width:47%;">
+                        <span style="font-size:30px; color:#7fcecb; margin-top:10px;">Tags com maior número de interessados</span>
+                    </div>
+                    <div style="background-color:#7fcecb; margin:5px 1%; display:inline-block; width:47%; height:200px">
+                        <ul style="font-size:20px; color:#1a1a2e;">
+                            <li style="list-style-type: square;">{dados['maior_interesse'][0]['info'].replace('#', '').capitalize()} ({dados['maior_interesse'][0]['porcentagem']}%)</li>
+                            <li style="list-style-type: square;">{dados['maior_interesse'][1]['info'].replace('#', '').capitalize()} ({dados['maior_interesse'][1]['porcentagem']}%)</li>
+                            <li style="list-style-type: square;">{dados['maior_interesse'][2]['info'].replace('#', '').capitalize()} ({dados['maior_interesse'][2]['porcentagem']}%)</li>
+                        </ul>
                     </div>
                 </div>
                 <footer style="background-color: #7fcecb; border-radius: 0px 0px {border_radius}px {border_radius}px;
-                        padding:13px 0px;">
-                    <p style="color:#1a1a2e; font-size:12px; width: 100%; text-align: center;
+                        padding:15px 0px;">
+                    <p style="color:#1a1a2e; font-size:14px; width: 100%; text-align: center;
                         margin: auto; display:block;">
                         ©2023 AjudaAi   |   Todos os direitos reservados.
                     </p>
@@ -70,14 +90,12 @@ def enviar_email_para(assunto, addr, corpo_email, server_email):
     server_email.sendmail(msg['From'], msg['To'], msg.as_string().encode('utf-8'))
 
 
-def enviar_emails(assunto, addr, corpo):
+def enviar_emails(assunto, addr, dados: dict):
     server_email = smtplib.SMTP('smtp.gmail.com:587')   # conectando ao servidor SMTP do Gmail via TLS
     server_email.starttls()                             # habilita a criptografia na conexão. Se a conexão for SSl, já vem configurado
     server_email.login(autenticacao['login'], autenticacao['senha'])
 
     for to in addr:
-        enviar_email_para(assunto, to, corpo, server_email)
+        enviar_email_para(assunto, to, dados, server_email)
     server_email.close()
     
-    
-enviar_emails('Teste caio', ['caiofeitosa@ufpi.edu.br'], 'Testando 123')

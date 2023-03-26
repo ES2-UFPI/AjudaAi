@@ -39,7 +39,13 @@
             <br><br>
             <p text-align:center>{{ demanda['status'] }}</p>
             <br>
-            {% if usuario_ativo == demanda['codUsuario'] %}
+            {% if usuario_ativo != demanda['codUsuario'] and demanda['status'] == 'Em aberto' %}
+                <a class="botao-chat" style="text-decoration: none; background-color: blueviolet;" href="{{ url_for('aceitar_demanda', cod=demanda['codDemanda']) }}">Aceitar</a>
+                <br>
+                <br>
+                <br>
+            {% endif %}
+            {% if (usuario_ativo == demanda['codUsuario'] or usuario_ativo == demanda['ajudante'] or usuario_ativo == demanda['associados']) and demanda['status'] == 'Aceita' %}
                 <a class="botao-chat" style="text-decoration: none;" href="{{ url_for('chat', cod_demanda=demanda['codDemanda']) }}">Entrar no chat</a>
                 <br>
                 <br>

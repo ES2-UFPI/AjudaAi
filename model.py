@@ -126,7 +126,7 @@ usuarios = [
         'email': 'marcelocarvalho@ufpi.edu.br',
         'tags': [],
         'avaliacao': 1,
-        'ultimo_comentario_recebido': ''
+        'ultimo_comentario_recebido': 'Atrasou a entrega e não respondeu às mensagens.'
     },
     {
         'codUsuario': 7,
@@ -142,7 +142,7 @@ usuarios = [
         'email': 'larissasilva@ufpi.edu.br',
         'tags': [],
         'avaliacao': 5,
-        'ultimo_comentario_recebido': 'Atrasou a entrega e não respondeu às mensagens.'
+        'ultimo_comentario_recebido': ''
     }
 ]
 

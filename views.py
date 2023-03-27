@@ -134,6 +134,12 @@ def visualizar_demanda(cod):
     return render_template('visualizar_demanda.html', demanda=demanda, usuario_ativo=usuario_padrao)
 
 
+@aplicacao.route('/aceitar_demanda/<int:cod>')
+def aceitar_demanda(cod):
+    facade.aceita_demanda(cod, usuario_padrao)
+    return redirect(url_for('visualizar_demanda', cod=cod))
+
+
 @aplicacao.route('/apagar_demanda/<int:cod>')
 def apagar_demanda(cod):
     demanda = facade.apaga_demanda(cod)
@@ -143,7 +149,7 @@ def apagar_demanda(cod):
 @aplicacao.route('/fechar-demanda/<int:cod>')
 def fechar_demanda(cod):
     facade.fecha_demanda(cod)
-    return redirect(url_for('retorna_lista'))
+    return redirect(url_for('visualizar_demanda', cod=cod))
 
 
 @aplicacao.route('/chat/<int:cod_demanda>')

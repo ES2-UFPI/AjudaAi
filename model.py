@@ -3,7 +3,7 @@ demandas = [
         'codDemanda': 1,
         'titulo': 'Monitoria sobre Bioquímica',
         'tags': 'BIOLOGIA - Bioquímica; BIOLOGIA - Biologia I',
-        'tipo': 'Aberto a membros',
+        'tipo': 'Individual',
         'descricao': 'Gostaria de alguém para me auxiliar sobre estrutura e função metabólica de componentes celulares.',
         'status': 'Em aberto',
         'codUsuario': 3,
@@ -36,7 +36,7 @@ demandas = [
         'codDemanda': 4,
         'titulo': 'Monitoria sobre Cálculo',
         'tags': 'CÁLCULO: Derivadas; CÁLCULO: Integrais',
-        'tipo': 'Individual',
+        'tipo': 'Aberto a membros',
         'descricao': 'Gostaria de alguém para me auxiliar na parte derivadas e integrais. Estou com muita dificuldade.',
         'status': 'Aceita',
         'codUsuario': 1,
@@ -203,6 +203,14 @@ comentarios = [
 
 chat = [
     {
+        'codDemanda': 1,
+        'mensagens': []
+    },
+    {
+        'codDemanda': 2,
+        'mensagens': []
+    },
+    {
         'codDemanda': 3,
         'mensagens': [
             {
@@ -223,7 +231,11 @@ chat = [
             },
             {
                 'codUsuario': 7,
-                'texto': 'Já criei a sala. Segue o link da reunião pelo meet: https://meet.google.com/wxh-ngzj-ozo. Mais tarde a gente se fala.'
+                'texto': 'Já criei a sala. Segue o link da reunião pelo meet: https://meet.google.com/wxh-ngzj-ozo.'
+            },
+            {
+                'codUsuario': 7,
+                'texto': 'Mais tarde a gente se fala.'
             },
             {
                 'codUsuario': 1,

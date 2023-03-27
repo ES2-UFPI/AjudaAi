@@ -120,6 +120,10 @@ def salvar_demanda(titulo, tipo, descricao, tags, codDemanda=0, codUsuario=0):
         demandas[pos]['tags'] = tags
     else:
         notifica_usuarios(tags.split('; '), 'nova demanda')
+        chat.append({
+            'codDemanda': prox_id_demanda(),
+            'mensagens': []
+        })
         demandas.append({
             'codDemanda': prox_id_demanda(),
             'titulo': titulo,
@@ -131,7 +135,7 @@ def salvar_demanda(titulo, tipo, descricao, tags, codDemanda=0, codUsuario=0):
             'associados': [],
             'ajudante': 0
         })
-
+        
     return True
 
 
@@ -146,21 +150,34 @@ def avaliacao_usuario(id_usuario, pontos, comentario):
     usuario['ultimo_comentario_recebido'] = comentario
 
 
+def aceita_demanda(cod, usuario):
+    
+    print(demandas[0])
+    
+    pos = busca_demanda_id(cod)[0]
+    demanda = demandas[pos]
+    demanda['status'] = 'Aceita'
+    demanda['ajudante'] = usuario
+    
+    print(demandas[0])
+
+    
 def fecha_demanda(id_demanda):
     pos = busca_demanda_id(id_demanda)[0]
     demanda = demandas[pos]
     demanda['status'] = 'Fechada'
+    
+    if demanda['ajudante'] != 0:
+        usuarios = [busca_usuario_id(id_usuario) for id_usuario in demanda['associados']]
+        usuarios_envio = set([usuario['email'] for usuario in usuarios])
+        usuarios_envio.add(busca_usuario_id(demanda['codUsuario'])['email'])
 
-    usuarios = [busca_usuario_id(id_usuario) for id_usuario in demanda['associados']]
-    usuarios_envio = set([usuario['email'] for usuario in usuarios])
-    usuarios_envio.add(busca_usuario_id(demanda['codUsuario'])['email'])
+        assunto_email = f"A demanda {demanda['titulo']} foi fechada!"
+        corpo_email = f'A demanda "{demanda["titulo"]}", que você participou, foi fechada!'\
+                        + " Fique a vontade para avaliar quem te ajudou."\
+                        + f'<br><br><a href="http://127.0.0.1:5000/avaliar-monitor/{demanda["ajudante"]}" style="color:#213951; text-decoration:none; border:2px solid #213951; padding:5px 7px; text-align: center; border-radius:5px; width:25%; display: block; margin:auto;">Avaliar</a>'
 
-    assunto_email = f"A demanda {demanda['titulo']} foi fechada!"
-    corpo_email = f'A demanda "{demanda["titulo"]}", que você participou, foi fechada!'\
-                    + " Fique a vontade para avaliar quem te ajudou."\
-                    + f'<br><br><a href="http://127.0.0.1:5000/avaliar-monitor/{demanda["ajudante"]}" style="color:#213951; text-decoration:none; border:2px solid #213951; padding:5px 7px; text-align: center; border-radius:5px; width:25%; display: block; margin:auto;">Avaliar</a>'
-
-    notifica.enviar_emails(assunto_email, usuarios_envio, corpo_email)
+        notifica.enviar_emails(assunto_email, usuarios_envio, corpo_email)
 
 
 def ranqueamento_usuarios():

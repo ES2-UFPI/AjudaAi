@@ -30,6 +30,7 @@ CREATE TABLE IF NOT EXISTS `railway`.`Usuario` (
   `Nome` VARCHAR(255) NOT NULL,
   `Senha` VARCHAR(75) NOT NULL,
   `Usuario` VARCHAR(100) NOT NULL,
+  `RankAvaliacao` float,
   PRIMARY KEY (`codUsuario`),
   UNIQUE INDEX `Usuario_UNIQUE` (`Usuario` ASC) VISIBLE,
   UNIQUE INDEX `Matricula_UNIQUE` (`Matricula` ASC) VISIBLE,
@@ -48,6 +49,7 @@ CREATE TABLE IF NOT EXISTS `railway`.`Demanda` (
   `Status` VARCHAR(20) NOT NULL,
   `Solicitante` INT NOT NULL,
   `Ajudante` INT NOT NULL,
+  `Avaliacao` float,
   PRIMARY KEY (`codDemanda`, `Solicitante`, `Ajudante`),
   UNIQUE INDEX `codDemanda_UNIQUE` (`codDemanda` ASC) VISIBLE,
   INDEX `fk_Demanda_Usuario_idx` (`Solicitante` ASC) VISIBLE,
@@ -158,6 +160,7 @@ CREATE TABLE IF NOT EXISTS `railway`.`Comentario`(
         ON DELETE NO ACTION
         ON UPDATE NO ACTION
 )
+
 ENGINE = InnoDB;
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;

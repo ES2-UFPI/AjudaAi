@@ -35,6 +35,21 @@
     cursor: pointer;
 }
 
+.botao-fechar-demanda {
+    background-color: #a40000;;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: large;
+    font-weight: bold;
+    color: white;
+    font-family: "Montserrat", sans-serif;
+}
+
+.botao-fechar-demanda:hover {
+    background-color: #a40000;
+    cursor: pointer;
+}
+
 .radio {
     display: inline-block;
     padding: 4px;

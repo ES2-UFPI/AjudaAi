@@ -6,7 +6,9 @@ demandas = [
         'tipo': 'Individual',
         'descricao': 'Gostaria de alguém para me auxiliar sobre estrutura e função metabólica de componentes celulares.',
         'status': 'Em aberto',
-        'codUsuario': 3
+        'codUsuario': 3,
+        'associados': [],
+        'ajudante': 0
     },
     {
         'codDemanda': 2,
@@ -74,7 +76,9 @@ usuarios = [
             'COMPUTAÇÃO - Banco de Dados',
             'LETRAS INGLÊS - Confecção de Abstract',
             '#programacao'
-        ]
+        ],
+        'avaliacao': 3,
+        'ultimo_comentario_recebido': ''
     },
     {
         'codUsuario': 3,
@@ -112,7 +116,9 @@ usuarios = [
             'FÍSICA - Leis de Newton',
             'LETRAS INGLÊS - Confecção de Abstract',
             '#programacao'
-        ]
+        ],
+        'avaliacao': 3,
+        'ultimo_comentario_recebido': ''
     },
     {
         'codUsuario': 6,

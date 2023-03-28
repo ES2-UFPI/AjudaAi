@@ -12,11 +12,9 @@ autenticacao = {
     'senha': 'gqxuhvqqypshpwha'
 }
 
-
 def enviar_email_para(assunto, addr, corpo_email, server_email):
     msg = MIMEMultipart('principal')
     image_cid = make_msgid()
-
     msg['To'] = addr
     msg['Subject'] = assunto
     msg['From'] = f"AjudaAi {autenticacao['login']}"
@@ -58,7 +56,6 @@ def enviar_email_para(assunto, addr, corpo_email, server_email):
     msg.attach(imagem)
     server_email.sendmail(msg['From'], msg['To'], msg.as_string().encode('utf-8'))
 
-
 def enviar_emails(assunto, addr, corpo):
     server_email = smtplib.SMTP('smtp.gmail.com:587')   # conectando ao servidor SMTP do Gmail via TLS
     server_email.starttls()                             # habilita a criptografia na conexão. Se a conexão for SSl, já vem configurado
@@ -66,5 +63,5 @@ def enviar_emails(assunto, addr, corpo):
 
     for to in addr:
         enviar_email_para(assunto, to, corpo, server_email)
-
+        
     server_email.close()

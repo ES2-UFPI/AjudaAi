@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.IdentityModel.Protocols;
 
 namespace AjudaAiAPI.Context;
 
@@ -34,19 +33,20 @@ public partial class RailwayContext : DbContext
     {
         var builder = WebApplication.CreateBuilder();
         var strCon =
-         builder.Configuration.GetConnectionString("railwayon");
+         builder.Configuration.GetConnectionString("Railway");
         return strCon.ToString();
     }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-          => optionsBuilder.UseMySQL(StrConexao());
-    
+            => optionsBuilder.UseMySQL(StrConexao());
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Atreladum>(entity =>
         {
             entity.HasKey(e => new { e.CodTag, e.CodDemanda }).HasName("PRIMARY");
+
+            entity.ToTable("atrelada");
 
             entity.HasIndex(e => e.CodDemanda, "codDemanda_UNIQUE").IsUnique();
 
@@ -75,7 +75,7 @@ public partial class RailwayContext : DbContext
         {
             entity.HasKey(e => new { e.IdComentario, e.CodUsuario, e.IdTopicos }).HasName("PRIMARY");
 
-            entity.ToTable("Comentario");
+            entity.ToTable("comentario");
 
             entity.HasIndex(e => e.CodUsuario, "fk_Comentario_codUsuario");
 
@@ -93,6 +93,11 @@ public partial class RailwayContext : DbContext
                 .HasColumnType("text")
                 .HasColumnName("mensagem");
 
+            entity.HasOne(d => d.CodUsuarioNavigation).WithMany(p => p.Comentarios)
+                .HasForeignKey(d => d.CodUsuario)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("fk_Comentario_codUsuario");
+
             entity.HasOne(d => d.IdTopicosNavigation).WithMany(p => p.Comentarios)
                 .HasPrincipalKey(p => p.IdTopicos)
                 .HasForeignKey(d => d.IdTopicos)
@@ -103,6 +108,8 @@ public partial class RailwayContext : DbContext
         modelBuilder.Entity<Demandum>(entity =>
         {
             entity.HasKey(e => new { e.CodDemanda, e.Solicitante, e.Ajudante }).HasName("PRIMARY");
+
+            entity.ToTable("demanda");
 
             entity.HasIndex(e => e.CodDemanda, "codDemanda_UNIQUE").IsUnique();
 
@@ -135,7 +142,7 @@ public partial class RailwayContext : DbContext
         {
             entity.HasKey(e => e.IdForum).HasName("PRIMARY");
 
-            entity.ToTable("Forum");
+            entity.ToTable("forum");
 
             entity.HasIndex(e => e.IdForum, "idForum_UNIQUE").IsUnique();
 
@@ -146,6 +153,8 @@ public partial class RailwayContext : DbContext
         {
             entity.HasKey(e => e.CodTag).HasName("PRIMARY");
 
+            entity.ToTable("tags");
+
             entity.HasIndex(e => e.CodTag, "codTags_UNIQUE").IsUnique();
 
             entity.Property(e => e.CodTag).HasColumnName("codTag");
@@ -155,6 +164,8 @@ public partial class RailwayContext : DbContext
         modelBuilder.Entity<Topico>(entity =>
         {
             entity.HasKey(e => new { e.IdTopicos, e.IdForum, e.CodUsuario }).HasName("PRIMARY");
+
+            entity.ToTable("topicos");
 
             entity.HasIndex(e => e.IdForum, "fk_Forum_idForum");
 
@@ -185,7 +196,7 @@ public partial class RailwayContext : DbContext
         {
             entity.HasKey(e => e.CodUsuario).HasName("PRIMARY");
 
-            entity.ToTable("Usuario");
+            entity.ToTable("usuario");
 
             entity.HasIndex(e => e.Matricula, "Matricula_UNIQUE").IsUnique();
 
@@ -195,7 +206,6 @@ public partial class RailwayContext : DbContext
 
             entity.Property(e => e.CodUsuario).HasColumnName("codUsuario");
             entity.Property(e => e.Conhecimento).HasColumnType("text");
-            entity.Property(e => e.Curso).HasMaxLength(45);
             entity.Property(e => e.Email).HasMaxLength(100);
             entity.Property(e => e.Nome).HasMaxLength(255);
             entity.Property(e => e.Senha).HasMaxLength(75);

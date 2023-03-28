@@ -15,5 +15,7 @@ public partial class Comentario
 
     public string Mensagem { get; set; } = null!;
 
+    public virtual Usuario CodUsuarioNavigation { get; set; } = null!;
+
     public virtual Topico IdTopicosNavigation { get; set; } = null!;
 }

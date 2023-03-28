@@ -31,8 +31,8 @@ def listagem_topicos_forum():
     for t in aux:
         t['usuario'] = busca_usuario_id(t['codUsuario'])
     return aux
-
-
+    
+    
 def listagem_demandas(id_usuario=0):
     if id_usuario:
         return [d for d in demandas if d['codUsuario'] == id_usuario]
@@ -131,9 +131,7 @@ def salvar_demanda(titulo, tipo, descricao, tags, codDemanda=0, codUsuario=0):
             'tipo': tipo,
             'descricao': descricao,
             'status': 'Em aberto',
-            'codUsuario': codUsuario,
-            'associados': [],
-            'ajudante': 0
+            'codUsuario': codUsuario
         })
         
     return True
@@ -255,29 +253,6 @@ def enviar_mensagem_chat(mensagem, cod_demanda, cod_usuario):
         'codUsuario': cod_usuario,
         'texto': mensagem
     })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 # def editar_demanda(codDemanda, titulo, tipo, descricao, tags):
 #     global demandas

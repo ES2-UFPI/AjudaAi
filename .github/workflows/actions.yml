@@ -8,6 +8,7 @@ on:
     branches: 
       - main
       - dev
+      - dev
       - release/*
   pull_request:
     branches: 
@@ -33,6 +34,9 @@ jobs:
         python -m pip install selenium
         python -m pip install requests
         python -m pip install webdriver-manager
+        python -m pip install selenium
+        python -m pip install requests
+        python -m pip install webdriver-manager
         python -m pip install flake8 pytest
         python -m pip install flask
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
@@ -48,8 +52,16 @@ jobs:
         pip install chromedriver-autoinstaller selenium pyvirtualdisplay
         sudo apt-get install xvfb
         
+    - name: Chrome
+      run: |
+        sudo apt purge google-chrome-stable  
+        pip install chromedriver-autoinstaller selenium pyvirtualdisplay
+        sudo apt-get install xvfb
+        
     - name: Test with pytest
       run: |
+        pytest templates/tests/PreencherDuvida.py
+        pytest templates/tests/test_cadastrodemanda.py
         pytest templates/tests/PreencherDuvida.py
         pytest templates/tests/test_cadastrodemanda.py
   deploy:
@@ -69,5 +81,6 @@ jobs:
         python -m pip install --upgrade pip
         python -m pip install flask
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+    - name: Rodando a aplicação
     - name: Rodando a aplicação
       run: |

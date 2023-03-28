@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Rank dos usuários</title>
+	<link rel="stylesheet" type="text/css" href="../static/styleRanqueamento.css">
+  <link rel = "shortcut icon" href = "../static/img/favicon_transparent_32x32.ico">
+</head>
+<body>
+	<header>
+		<header>
+			<h1><img src="../static/img/remove bg logo.png" width="150" height="130"></h1>
+			<nav id="menuLateral">
+				<a href="{{ url_for('index') }}">Página Inicial</a>
+				<a href="{{ url_for('entrar') }}">Entrar</a>
+				<a href="{{ url_for('sobre') }}">Sobre</a>
+				<a href="{{ url_for('contato') }}">Fale com a gente</a>
+			</nav>
+		</header>
+	</header>
+	<main>
+    <section class="barra">
+      <div id="faixa_cabeçalho">
+        <h2>Rank</h2>
+      </div>	
+    </section>  
+        <div>
+            <table class="table">
+              <tr>
+                <th>Usuári@</th>
+                <th>Avaliação</th>
+                <th>Últimos Comentários</th>
+              </tr>
+              {% for i, usuario in usuarios %}
+                  <tr class="user">
+                    <td>
+                      <img src="../static/img/{{ fotos_perfil[i] }}" alt="Avatar de {{ usuario['nome'] }}">{{ usuario['nome'] }}
+                    </td>
+                    <td>
+                      <div class="rating">
+                        {% for i in range(usuario['avaliacao']) %}
+                          <img class="star" src="../static/img/estrela.png" alt="Estrela">
+                        {% endfor %}
+                      </div>
+                    </td>
+                    <td>{{ usuario['ultimo_comentario_recebido'] }}</td>
+                  </tr>
+              {% endfor %}
+              <!-- <tr class="user" style="order: -4;"> -->
+            </table>
+        </div>
+        
+	</main>
+	<footer>
+        <p><div class="container-button"><button class="back-button"><a href="{{ url_for('index') }}">Voltar</a></button></div></p>
+    </footer>
+</body>
+</html>

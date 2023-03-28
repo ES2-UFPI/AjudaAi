@@ -1,5 +1,8 @@
-from model import *
+import math
 import notifica
+import notifica_gestao
+from model import *
+
 
 def listagem_tags():
     return tags
@@ -27,7 +30,6 @@ def listagem_topicos_forum():
     aux = topicos_forum.copy()
     for t in aux:
         t['usuario'] = busca_usuario_id(t['codUsuario'])
-
     return aux
     
     
@@ -81,11 +83,7 @@ def info_topico(id_topico):
     topico = busca_topico_id(id_topico)
     topico['usuario'] = busca_usuario_id(topico['codUsuario'])
     topico['comentarios'] = [c for c in comentarios if c['codTopico'] == topico['id']]
-
-
-    # print(topico['comentarios'])
-
-
+    
     for c in topico['comentarios']:
         c['usuario'] = busca_usuario_id(c['codUsuario'])
 
@@ -122,6 +120,10 @@ def salvar_demanda(titulo, tipo, descricao, tags, codDemanda=0, codUsuario=0):
         demandas[pos]['tags'] = tags
     else:
         notifica_usuarios(tags.split('; '), 'nova demanda')
+        chat.append({
+            'codDemanda': prox_id_demanda(),
+            'mensagens': []
+        })
         demandas.append({
             'codDemanda': prox_id_demanda(),
             'titulo': titulo,
@@ -131,9 +133,126 @@ def salvar_demanda(titulo, tipo, descricao, tags, codDemanda=0, codUsuario=0):
             'status': 'Em aberto',
             'codUsuario': codUsuario
         })
-
+        
     return True
 
+
+def avaliacao_usuario(id_usuario, pontos, comentario):
+    def pos_usuario(id):
+        for i in range(len(usuarios)):
+            if usuarios[i]['codUsuario'] == id:
+                return i
+
+    usuario = usuarios[pos_usuario(id_usuario)]
+    usuario['avaliacao'] = (usuario['avaliacao'] + pontos) / 2
+    usuario['ultimo_comentario_recebido'] = comentario
+
+
+def aceita_demanda(cod, usuario):
+    
+    print(demandas[0])
+    
+    pos = busca_demanda_id(cod)[0]
+    demanda = demandas[pos]
+    demanda['status'] = 'Aceita'
+    demanda['ajudante'] = usuario
+    
+    print(demandas[0])
+
+    
+def fecha_demanda(id_demanda):
+    pos = busca_demanda_id(id_demanda)[0]
+    demanda = demandas[pos]
+    demanda['status'] = 'Fechada'
+    
+    if demanda['ajudante'] != 0:
+        usuarios = [busca_usuario_id(id_usuario) for id_usuario in demanda['associados']]
+        usuarios_envio = set([usuario['email'] for usuario in usuarios])
+        usuarios_envio.add(busca_usuario_id(demanda['codUsuario'])['email'])
+
+        assunto_email = f"A demanda {demanda['titulo']} foi fechada!"
+        corpo_email = f'A demanda "{demanda["titulo"]}", que você participou, foi fechada!'\
+                        + " Fique a vontade para avaliar quem te ajudou."\
+                        + f'<br><br><a href="http://127.0.0.1:5000/avaliar-monitor/{demanda["ajudante"]}" style="color:#213951; text-decoration:none; border:2px solid #213951; padding:5px 7px; text-align: center; border-radius:5px; width:25%; display: block; margin:auto;">Avaliar</a>'
+
+        notifica.enviar_emails(assunto_email, usuarios_envio, corpo_email)
+
+
+def ranqueamento_usuarios():
+    aux = usuarios.copy()
+    aux = sorted(aux, key=lambda k: k['avaliacao'], reverse=True)
+    
+    for i in range(len(aux)):
+        aux[i]['avaliacao'] = math.floor(aux[i]['avaliacao'])
+    return aux, fotos_perfil
+
+
+def gera_relatorio():
+
+    def calcula_porcentagem(dados_gerais: list):
+        resumo = list()
+        
+        for dado in set(dados_gerais):
+            quant_total = len(dados_gerais)
+            ocorrencias = dados_gerais.count(dado)
+            resumo.append({
+                'info': dado,
+                'porcentagem': round((ocorrencias / quant_total) * 100, 2)
+            })
+        
+        return resumo
+    
+    def topicos_maior_interesse():
+        tags = list()
+        
+        for u in usuarios:
+            tags += u['tags']
+            
+        lista = calcula_porcentagem(tags)
+        return sorted(lista, key=lambda k: k['porcentagem'], reverse=True)[:3]
+    
+    def topicos_mais_procurados():
+        tags = list()
+        
+        for d in demandas:
+            tags += [tag.strip() for tag in d['tags'].split(';')]
+        for t in topicos_forum:
+            tags += t['tags']
+            
+        lista = calcula_porcentagem(tags)
+        return sorted(lista, key=lambda k: k['porcentagem'], reverse=True)[:3]
+    
+    def usuarios_destaque():
+        return [u['nome'] for u in ranqueamento_usuarios()[0][:3]]
+    
+    dados = {
+        'maior_interesse': topicos_maior_interesse(),
+        'mais_procurados': topicos_mais_procurados(),
+        'destaques': usuarios_destaque()
+    }
+    
+    assunto_email = 'Estatísticas do AjudaAí!'
+    usuarios_envio = [u['email'] for u in usuarios[:5]] #integrantes do grupo
+    notifica_gestao.enviar_emails(assunto_email, usuarios_envio, dados)
+    
+
+def pos_chat(id):
+    for i in range(len(chat)):
+        if chat[i]['codDemanda'] == id:
+            return i
+
+
+def mensagens_chat(cod_demanda):
+    conversa = chat[pos_chat(cod_demanda)]
+    return conversa['mensagens']
+
+
+def enviar_mensagem_chat(mensagem, cod_demanda, cod_usuario):
+    conversa = chat[pos_chat(cod_demanda)]
+    conversa['mensagens'].append({
+        'codUsuario': cod_usuario,
+        'texto': mensagem
+    })
 
 # def editar_demanda(codDemanda, titulo, tipo, descricao, tags):
 #     global demandas

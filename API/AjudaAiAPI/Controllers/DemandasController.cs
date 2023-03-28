@@ -11,55 +11,55 @@ namespace AjudaAiAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ComentariosController : ControllerBase
+    public class DemandasController : ControllerBase
     {
         private readonly RailwayContext _context;
 
-        public ComentariosController(RailwayContext context)
+        public DemandasController(RailwayContext context)
         {
             _context = context;
         }
 
-        // GET: api/Comentarios
+        // GET: api/Demandas
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Comentario>>> GetComentarios()
+        public async Task<ActionResult<IEnumerable<Demandum>>> GetDemanda()
         {
-          if (_context.Comentarios == null)
+          if (_context.Demanda == null)
           {
               return NotFound();
           }
-            return await _context.Comentarios.ToListAsync();
+            return await _context.Demanda.ToListAsync();
         }
 
-        // GET: api/Comentarios/5
+        // GET: api/Demandas/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Comentario>> GetComentario(int id)
+        public async Task<ActionResult<Demandum>> GetDemandum(int id)
         {
-          if (_context.Comentarios == null)
+          if (_context.Demanda == null)
           {
               return NotFound();
           }
-            var comentario = await _context.Comentarios.FindAsync(id);
+            var demandum = await _context.Demanda.FindAsync(id);
 
-            if (comentario == null)
+            if (demandum == null)
             {
                 return NotFound();
             }
 
-            return comentario;
+            return demandum;
         }
 
-        // PUT: api/Comentarios/5
+        // PUT: api/Demandas/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutComentario(int id, Comentario comentario)
+        public async Task<IActionResult> PutDemandum(int id, Demandum demandum)
         {
-            if (id != comentario.IdComentario)
+            if (id != demandum.CodDemanda)
             {
                 return BadRequest();
             }
 
-            _context.Entry(comentario).State = EntityState.Modified;
+            _context.Entry(demandum).State = EntityState.Modified;
 
             try
             {
@@ -67,7 +67,7 @@ namespace AjudaAiAPI.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!ComentarioExists(id))
+                if (!DemandumExists(id))
                 {
                     return NotFound();
                 }
@@ -80,23 +80,23 @@ namespace AjudaAiAPI.Controllers
             return NoContent();
         }
 
-        // POST: api/Comentarios
+        // POST: api/Demandas
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Comentario>> PostComentario(Comentario comentario)
+        public async Task<ActionResult<Demandum>> PostDemandum(Demandum demandum)
         {
-          if (_context.Comentarios == null)
+          if (_context.Demanda == null)
           {
-              return Problem("Entity set 'RailwayContext.Comentarios'  is null.");
+              return Problem("Entity set 'RailwayContext.Demanda'  is null.");
           }
-            _context.Comentarios.Add(comentario);
+            _context.Demanda.Add(demandum);
             try
             {
                 await _context.SaveChangesAsync();
             }
             catch (DbUpdateException)
             {
-                if (ComentarioExists(comentario.IdComentario))
+                if (DemandumExists(demandum.CodDemanda))
                 {
                     return Conflict();
                 }
@@ -106,32 +106,32 @@ namespace AjudaAiAPI.Controllers
                 }
             }
 
-            return CreatedAtAction("GetComentario", new { id = comentario.IdComentario }, comentario);
+            return CreatedAtAction("GetDemandum", new { id = demandum.CodDemanda }, demandum);
         }
 
-        // DELETE: api/Comentarios/5
+        // DELETE: api/Demandas/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteComentario(int id)
+        public async Task<IActionResult> DeleteDemandum(int id)
         {
-            if (_context.Comentarios == null)
+            if (_context.Demanda == null)
             {
                 return NotFound();
             }
-            var comentario = await _context.Comentarios.FindAsync(id);
-            if (comentario == null)
+            var demandum = await _context.Demanda.FindAsync(id);
+            if (demandum == null)
             {
                 return NotFound();
             }
 
-            _context.Comentarios.Remove(comentario);
+            _context.Demanda.Remove(demandum);
             await _context.SaveChangesAsync();
 
             return NoContent();
         }
 
-        private bool ComentarioExists(int id)
+        private bool DemandumExists(int id)
         {
-            return (_context.Comentarios?.Any(e => e.IdComentario == id)).GetValueOrDefault();
+            return (_context.Demanda?.Any(e => e.CodDemanda == id)).GetValueOrDefault();
         }
     }
 }

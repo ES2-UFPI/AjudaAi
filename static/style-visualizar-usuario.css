@@ -24,7 +24,42 @@
 }
 
 .botao-aceitar:hover {
-    background-color: #ffffff;
+    background-color: #eb712f;
+    color: rgb(0, 0, 0);
+    cursor: pointer;
+}
+
+.botao-voltar {
+    padding: 1px;
+    background-color: #0037ff;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: large;
+    font-weight: bold;
+    color: white;
+    font-family: "Montserrat", sans-serif;
+}
+
+.botao-voltar:hover {
+    background-color: #eb712f;
+    color: rgb(0, 0, 0);
+    cursor: pointer;
+}
+
+.botao-editar {
+    padding: 1px;
+    background-color: #620086;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: large;
+    font-weight: bold;
+    color: white;
+    font-family: "Montserrat", sans-serif;
+}
+
+.botao-editar:hover {
+    background-color: #eb712f;
+    color: rgb(0, 0, 0);
     cursor: pointer;
 }
 
@@ -33,6 +68,15 @@
     display: block;
     text-align: left;
     font-size: 15px;
+    font-weight: normal;
+    font-weight: bold;
+}
+
+.descricao-de-titulo-aceitar {
+    padding-bottom: 1px;
+    display: block;
+    text-align: center;
+    font-size: 25px;
     font-weight: normal;
     font-weight: bold;
 }

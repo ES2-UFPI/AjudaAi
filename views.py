@@ -38,6 +38,13 @@ def criar_demanda():
     return redirect(url_for('index'))
 
 
+@aplicacao.route('/admin/enviar-relatorios')
+def relatorio_gestao():
+    facade.gera_relatorio()
+    flash('Relatórios enviados com sucesso!', category='success')
+    return redirect(url_for('index'))
+
+
 @aplicacao.route('/novo_topico')
 def novo_topico():
 	#     if 'usuario_logado' not in session or session['usuario_logado'] is None:
@@ -67,6 +74,12 @@ def comentar():
 @aplicacao.route('/forum')
 def forum():
  	return render_template('Forum.html', topicos=facade.listagem_topicos_forum())
+
+
+@aplicacao.route('/rank')
+def rank():
+    usuarios, perfil = facade.ranqueamento_usuarios()
+    return render_template('Ranqueamento.html', usuarios=enumerate(usuarios), fotos_perfil=perfil)
 
 
 @aplicacao.route('/lista_demandas')
@@ -105,12 +118,38 @@ def visualizar_demanda(cod):
     demanda = facade.busca_demanda_id(cod)[1]
     return render_template('visualizar_demanda.html', demanda=demanda)
 
+@aplicacao.route('/aceitar_demanda/<int:cod>')
+def aceitar_demanda(cod):
+    facade.aceita_demanda(cod, usuario_padrao)
+    return redirect(url_for('visualizar_demanda', cod=cod))
+
+
+@aplicacao.route('/aceitar_demanda/<int:cod>')
+def aceitar_demanda(cod):
+    facade.aceita_demanda(cod, usuario_padrao)
+    return redirect(url_for('visualizar_demanda', cod=cod))
+
 
 @aplicacao.route('/apagar_demanda/<int:cod>')
 def apagar_demanda(cod):
     demanda = facade.apaga_demanda(cod)
     return redirect(url_for('retorna_lista'))
 
+
+@aplicacao.route('/fechar-demanda/<int:cod>')
+def fechar_demanda(cod):
+    facade.fecha_demanda(cod)
+    return redirect(url_for('visualizar_demanda', cod=cod))
+
+@aplicacao.route('/chat/<int:cod_demanda>')
+def chat(cod_demanda):
+    return render_template('ChatPrivado.html', mensagens=facade.mensagens_chat(cod_demanda), demanda=cod_demanda, usuario_ativo=usuario_padrao)
+
+@aplicacao.route('/chat/mensagem/<int:cod_demanda>', methods=['GET', 'POST'])
+def mensagem_chat(cod_demanda):
+    mensagem = request.form['mensagem']
+    facade.enviar_mensagem_chat(mensagem, cod_demanda, usuario_padrao)
+    return redirect(url_for('chat', cod_demanda=cod_demanda))
 
 @aplicacao.route('/login')
 def login():
@@ -120,8 +159,7 @@ def login():
 
 @aplicacao.route('/autenticar', methods=['POST'])
 def autenticar():
-    # busca o usuario no banco
-    
+#     busca o usuario no banco
 #     usuario = usuario_dao.buscar_por_id(request.form['usuario'])
 
     if usuario:

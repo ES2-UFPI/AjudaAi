@@ -3,7 +3,7 @@ demandas = [
         'codDemanda': 1,
         'titulo': 'Monitoria sobre Bioquímica',
         'tags': 'BIOLOGIA - Bioquímica; BIOLOGIA - Biologia I',
-        'tipo': 'Aberto a membros',
+        'tipo': 'Individual',
         'descricao': 'Gostaria de alguém para me auxiliar sobre estrutura e função metabólica de componentes celulares.',
         'status': 'Em aberto',
         'codUsuario': 3
@@ -15,7 +15,9 @@ demandas = [
         'tipo': 'Individual',
         'descricao': 'Possuo conhecimento básico de inglês e procuro monitoria para revisar comigo o abstract do meu artigo.',
         'status': 'Em aberto',
-        'codUsuario': 1
+        'codUsuario': 5,
+        'associados': [],
+        'ajudante': 0
     },
     {
         'codDemanda': 3,
@@ -23,17 +25,21 @@ demandas = [
         'tags': 'COMPUTAÇÃO: Algoritmo; COMPUTAÇÃO: Programação Estruturada; COMPUTAÇÃO: Linguagem C',
         'tipo': 'Aberto a membros',
         'descricao': 'Sou estudante de bioinformática e preciso aprender scripts em python, mas possuo dificuldade em lógica de programação.',
-        'status': 'Finalizado',
-        'codUsuario': 1
+        'status': 'Aceita',
+        'codUsuario': 1,
+        'associados': [2,3,4,5],
+        'ajudante': 7
     },
     {
         'codDemanda': 4,
         'titulo': 'Monitoria sobre Cálculo',
         'tags': 'CÁLCULO: Derivadas; CÁLCULO: Integrais',
-        'tipo': 'Individual',
+        'tipo': 'Aberto a membros',
         'descricao': 'Gostaria de alguém para me auxiliar na parte derivadas e integrais. Estou com muita dificuldade.',
-        'status': 'Em aberto',
-        'codUsuario': 5
+        'status': 'Aceita',
+        'codUsuario': 1,
+        'associados': [2,3,4,5],
+        'ajudante': 8
     },
 ]
 
@@ -56,7 +62,9 @@ usuarios = [
             'COMPUTAÇÃO - Banco de Dados',
             'LETRAS INGLÊS - Confecção de Abstract',
             '#programacao'
-        ]
+        ],
+        'avaliacao': 2,
+        'ultimo_comentario_recebido': 'Aceitou a demanda mas simplesmente não apareceu depois.'
     },
     {
         'codUsuario': 2,
@@ -78,7 +86,9 @@ usuarios = [
             'LETRAS INGLÊS - Confecção de Abstract',
             'LETRAS INGLÊS - Tempos Verbais',
             '#programacao'
-        ]
+        ],
+        'avaliacao': 4,
+        'ultimo_comentario_recebido': 'Muito atenciosa, didática e pontual.'
     },
     {
         'codUsuario': 4,
@@ -89,7 +99,9 @@ usuarios = [
             'LETRAS INGLÊS - Confecção de Abstract',
             'LETRAS INGLÊS - Tempos Verbais',
             '#programacao'
-        ]
+        ],
+        'avaliacao': 3,
+        'ultimo_comentario_recebido': 'Ensina bem, mas poderia melhorar na questão da pontualidade.'
     },
     {
         'codUsuario': 5,
@@ -106,19 +118,25 @@ usuarios = [
         'codUsuario': 6,
         'nome': 'Marcelo Carvalho',
         'email': 'marcelocarvalho@ufpi.edu.br',
-        'tags': []
+        'tags': [],
+        'avaliacao': 1,
+        'ultimo_comentario_recebido': 'Atrasou a entrega e não respondeu às mensagens.'
     },
     {
         'codUsuario': 7,
         'nome': 'Sara Eduarda',
         'email': 'saraeduarda@ufpi.edu.br',
-        'tags': []
+        'tags': [],
+        'avaliacao': 3,
+        'ultimo_comentario_recebido': 'Boa tutora.'
     },
     {
         'codUsuario': 8,
         'nome': 'Larissa Silva',
         'email': 'larissasilva@ufpi.edu.br',
-        'tags': []
+        'tags': [],
+        'avaliacao': 5,
+        'ultimo_comentario_recebido': ''
     }
 ]
 
@@ -174,6 +192,71 @@ comentarios = [
         'codTopico': 1,
         'codUsuario': 2
     }
+]
+
+
+chat = [
+    {
+        'codDemanda': 1,
+        'mensagens': []
+    },
+    {
+        'codDemanda': 2,
+        'mensagens': []
+    },
+    {
+        'codDemanda': 3,
+        'mensagens': [
+            {
+                'codUsuario': 1,
+                'texto': 'Olá! Quando podemos marcar uma reunião para a aula?'
+            },
+            {
+                'codUsuario': 7,
+                'texto': 'Tenho horários livres às terças e quintas, das 14 às 16.'
+            },
+            {
+                'codUsuario': 1,
+                'texto': 'Então vamos marcar para hoje à tarde.'
+            },
+            {
+                'codUsuario': 7,
+                'texto': 'Certo!'
+            },
+            {
+                'codUsuario': 7,
+                'texto': 'Já criei a sala. Segue o link da reunião pelo meet: https://meet.google.com/wxh-ngzj-ozo.'
+            },
+            {
+                'codUsuario': 7,
+                'texto': 'Mais tarde a gente se fala.'
+            },
+            {
+                'codUsuario': 1,
+                'texto': 'Tá bom :)'
+            }
+        ]
+    },
+    {
+        'codDemanda': 4,
+        'mensagens': [
+            {
+                'codUsuario': 1,
+                'texto': 'Olá, bom dia!'
+            },
+        ]
+    }
+]
+
+fotos_perfil = [
+    'icon.png',
+    'icon.png',
+    'iconboy.png',
+    'icon3.png',
+    'icon2.png',
+    'icon.png',
+    'iconboy2.png',
+    'icon3.png'
 ]
 
 

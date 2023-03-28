@@ -19,6 +19,8 @@ public partial class Demandum
 
     public int Ajudante { get; set; }
 
+    public float? Avaliacao { get; set; }
+
     public virtual Usuario AjudanteNavigation { get; set; } = null!;
 
     public virtual Atreladum? Atreladum { get; set; }
